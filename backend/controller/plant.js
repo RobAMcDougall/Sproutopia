@@ -11,7 +11,7 @@ const getPlantsByName = async (ctx) => {
 
 const getPlantsByUser = async (ctx) => {
     try {
-        ctx.body = await Plant.getPlantByUser(ctx.params.user)
+        ctx.body = await Plant.getPlantsByUser(ctx.params.user)
         ctx.status = 200
     } catch {
         ctx.status = 404
