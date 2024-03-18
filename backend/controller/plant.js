@@ -1,8 +1,8 @@
 const Plant = require("../model/plant")
 
-const getPlantsByName = async (ctx) => {
+const getPlantById = async (ctx) => {
     try {
-        ctx.body = await Plant.getPlantByName(ctx.req.body)
+        ctx.body = await Plant.getPlantById(ctx.params.id)
         ctx.status = 200
     } catch {
         ctx.status = 404
@@ -27,9 +27,19 @@ const getPlantsDetailsByUser = async (ctx) => {
     }
 }
 
+const getAllPlants = async ctx => {
+    try {
+        ctx.body = await Plant.getAllPlants();
+        ctx.status = 200;
+    } catch {
+        ctx.status = 500;
+    }
+}
+
 
 module.exports = {
-    getPlantsByName,
+    getPlantById,
     getPlantsByUser,
-    getPlantsDetailsByUser
+    getPlantsDetailsByUser,
+    getAllPlants
 }

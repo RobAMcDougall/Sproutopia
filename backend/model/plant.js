@@ -1,10 +1,10 @@
 const db = require('../db/db')
 
-const getPlantByName = async (name) => {
+const getPlantById = async (id) => {
     try {
         const results = await db.query(
-            'SELECT * FROM all_plants WHERE name LIKE $1',
-            [name]
+            'SELECT * FROM all_plants WHERE id LIKE $1',
+            [id]
         )
         return results.rows[0]
     } catch {
@@ -39,8 +39,14 @@ const getPlantDetailsByUser = async (userId) => {
     }
 };
 
+const getAllPlants = async () => {
+    const results = await db.query("SELECT * FROM all_plants");
+    return results.rows;
+}
+
 module.exports = {
-    getPlantByName,
+    getPlantById,
     getPlantsByUser,
-    getPlantDetailsByUser
+    getPlantDetailsByUser,
+    getAllPlants
 }
