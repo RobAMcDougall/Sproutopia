@@ -18,7 +18,7 @@ const plants = new Router({prefix: "/plants"})
 plants.get("/search", controllers.plant.getPlantsByName)
 plants.get("/:user", controllers.plant.getPlantsByUser)
 plants.get("/details/:user", controllers.plant.getPlantsDetailsByUser)
-
+app.use(plants.routes()).use(plants.allowedMethods())
 
 
 module.exports = app;
