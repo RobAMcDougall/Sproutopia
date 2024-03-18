@@ -1,0 +1,34 @@
+.garden-page {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh;
+  }
+
+.plant-pots {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 70px;
+    column-gap: 40px;
+}
+
+.plant-pot {
+    width: 150px;
+    height: 150px;
+}
+
+.todo-list {
+    position: absolute;
+    top: 60px; 
+    right: 20px;
+  }
+
+
+.weather-widget {
+    position: absolute;
+    top: 60px; 
+    left: 20px; 
+}
+
+
+  
