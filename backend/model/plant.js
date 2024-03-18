@@ -15,10 +15,7 @@ const getPlantByName = async (name) => {
 const getPlantsByUser = async (userId) => {
     try {
         const results = await db.query(
-            `SELECT p.*
-            FROM all_plants p
-            INNER JOIN planted_veg pv ON p.id = pv.plant_id
-            WHERE pv.user = $1`,
+            `SELECT * FROM planted_veg WHERE "user" = $1`,
             [userId]
         );
         return results.rows;
@@ -27,7 +24,23 @@ const getPlantsByUser = async (userId) => {
     }
 };
 
+const getPlantDetailsByUser = async (userId) => {
+    try {
+        const results = await db.query(
+            `SELECT p.*
+            FROM all_plants p
+            INNER JOIN planted_veg pv ON p.id = pv.plant_id
+            WHERE pv.user = $1`,
+            [userId]
+        );
+        return results.rows;
+    } catch (error) {
+        throw new Error('Error getting plant details by user');
+    }
+};
+
 module.exports = {
     getPlantByName,
-    getPlantsByUser
+    getPlantsByUser,
+    getPlantDetailsByUser
 }
