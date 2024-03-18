@@ -4,7 +4,7 @@ const db = require("../db/db")
 const createSession = async (user_id) => {
 
     const response = await db.query(
-        `INSERT INTO auth_session (user_id, session_id) VALUES ($1, $2) RETURNING *`,
+        `INSERT INTO auth_session ("user", token) VALUES ($1, $2) RETURNING *`,
         [user_id, uuid(undefined, undefined, undefined)]
     )
     return response.rows[0]
