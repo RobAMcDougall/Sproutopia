@@ -34,7 +34,8 @@ CREATE TABLE "all_plants"(
     "germination_min" INTEGER NOT NULL,
     "germination_max" INTEGER NOT NULL,
     "storage" TEXT NOT NULL,
-    "sow_and_plant_info" TEXT NOT NULL
+    "sow_and_plant_info" TEXT NOT NULL,
+    "image_url" TEXT NOT NULL
 );
 
 CREATE TABLE "planted_veg"(
