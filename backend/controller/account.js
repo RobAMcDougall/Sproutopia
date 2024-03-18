@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
-const Account = require("../models/account");
-const Session = require("../models/session")
+const Account = require("../model/account");
+const Session = require("../model/session");
 
 const register = async (ctx) => {
     try {
@@ -22,6 +22,7 @@ const login = async (ctx) => {
         const account = await Account.getAccount(data)
 
         if (!await bcrypt.compare(data.password, account.password)) {
+            // noinspection ExceptionCaughtLocallyJS
             throw new Error("Invalid credentials")
         } else {
             ctx.body = await Session.createSession(account.id)
