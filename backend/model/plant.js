@@ -1,17 +1,17 @@
 const db = require('../db/db')
 
-const getPlantById = async (id) => {
+const getPlantByName = async (name) => {
   try {
     const results = await db.query(
-      'SELECT * FROM all_plants WHERE id = $1',
-      [id]
+      'SELECT * FROM all_plants WHERE name LIKE $1',
+      [name]
     )
     return results.rows[0]
   } catch {
-    throw new Error('Error getting all plants')
+    throw new Error('Error getting plant by name')
   }
 }
 
 module.exports = {
-  getPlantById
+  getPlantByName
 }
