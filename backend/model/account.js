@@ -12,10 +12,11 @@ const createAccount = async (data) =>{
 
 }
 
-const getAccount = async (username) => {
+const getAccount = async (data) => {
+    const {username, email } = data;
     const response = await db.query(
-        `SELECT * FROM user WHERE username = $1`,
-        [username]
+        `SELECT * FROM user WHERE username = $1 OR email = $2`,
+        [username, email]
     );
     try {
         return response.rows[0]
@@ -23,6 +24,7 @@ const getAccount = async (username) => {
         throw new Error("User not found")
     }
 }
+
 
 module.exports = {
     createAccount,
