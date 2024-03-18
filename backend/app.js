@@ -14,6 +14,10 @@ accounts.post("/login", controllers.account.login)
 accounts.delete("/logout", controllers.account.logout)
 app.use(accounts.routes()).use(accounts.allowedMethods())
 
+const plants = new Router({prefix: "/plants"})
+plants.get("/search", controllers.plant.getPlantsByName)
+plants.get("/:user", controllers.plant.getPlantsByUser)
+plants.get("/details/:user", controllers.plant.getPlantsDetailsByUser)
 
 
 
