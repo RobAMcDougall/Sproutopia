@@ -56,10 +56,15 @@ const addPlantForUser = async (user, plant) => {
     return response.rows[0];
 }
 
+const deletePlant = async (plant) => {
+    return await db.query("DELETE FROM planted_veg WHERE id = $1", [plant]);
+}
+
 module.exports = {
     getPlantById,
     getPlantsByUser,
     getPlantDetailsByUser,
     getAllPlants,
-    addPlantForUser
+    addPlantForUser,
+    deletePlant
 }

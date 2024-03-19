@@ -45,10 +45,16 @@ const addPlantForUser = async ctx => {
     }
 }
 
+const deletePlant = async ctx => {
+    ctx.body = await Plant.deletePlant(ctx.params.plant);
+    ctx.status = 204;
+}
+
 module.exports = {
     getPlantById,
     getPlantsByUser,
     getPlantsDetailsByUser,
     getAllPlants,
-    addPlantForUser
+    addPlantForUser,
+    deletePlant
 }
