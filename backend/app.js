@@ -19,7 +19,7 @@ const plants = new Router({prefix: "/plants"});
 plants.get("/user/:user", controllers.plant.getPlantsByUser);
 plants.get("/user/:user/details", controllers.plant.getPlantsDetailsByUser);
 plants.post("/user/:user/:plant", controllers.plant.addPlantForUser);
-plants.patch("user/:plant", controllers.plant.incrementGrowthStage);
+plants.patch("/user/:plant", controllers.plant.incrementGrowthStage);
 plants.delete("/user/:plant", controllers.plant.deletePlant);
 plants.get("/all", controllers.plant.getAllPlants);
 plants.get("/:id", controllers.plant.getPlantById);
