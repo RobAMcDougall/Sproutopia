@@ -3,7 +3,7 @@ const db = require('../db/db')
 const getPlantById = async (id) => {
     try {
         const results = await db.query(
-            'SELECT * FROM all_plants WHERE id LIKE $1',
+            'SELECT * FROM all_plants WHERE "id" = $1',
             [id]
         )
         return results.rows[0]
