@@ -50,7 +50,7 @@ describe("getAccount", () => {
         expect(result.id).toBe(1)
     })
 
-    it("should get an account by name", async () => {
+    it("should get an account by email", async () => {
         const testAccount = {id: 1, email: "test@test.com", password: "test"}
         vi.spyOn(db, "query").mockResolvedValueOnce({
             rows: [testAccount]
