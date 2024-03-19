@@ -37,6 +37,16 @@ const login = async (ctx) => {
     }
 }
 
+const getFromSession = async ctx => {
+    try {
+        ctx.body = await Account.getFromSession(ctx.request.get("Authorization"));
+        ctx.status = 200;
+    } catch (err) {
+        ctx.status = 404;
+        ctx.body = {error: err.message};
+    }
+}
+
 const logout = async (ctx) => {
     try {
         await Session.destroySession(ctx.request.get("Authorization")) // Gets the authorization value from the header
@@ -64,6 +74,7 @@ const protect = async (ctx, next) => {
 module.exports = {
     register,
     login,
+    getFromSession,
     logout,
     protect
 }

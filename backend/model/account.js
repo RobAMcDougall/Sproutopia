@@ -25,8 +25,20 @@ const getAccount = async (data) => {
     }
 }
 
+const getFromSession = async (token) => {
+    const response = await db.query(
+        'SELECT * FROM "user" WHERE id = (SELECT "user" FROM auth_session WHERE token = $1)',
+        [token]
+    );
+    try {
+        return response.rows[0];
+    } catch {
+        throw new Error("User not found for session");
+    }
+}
 
 module.exports = {
     createAccount,
     getAccount,
+    getFromSession
 }
