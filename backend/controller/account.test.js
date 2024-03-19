@@ -1,6 +1,6 @@
 // @vitest-enviroment node
 import { createMockContext } from "@story-health/vitest-koa-mocks"
-import { afterAll } from "vitest"
+import { afterAll, describe, expect } from "vitest"
 
 const bcrypt = require("bcryptjs")
 const accounts = require("./account")
@@ -50,5 +50,50 @@ describe("register", () => {
         expect(ctx.status).toBe(400)
         expect(ctx.body).toStrictEqual({ message: "Something went wrong" } ) 
     })
-
 })
+
+describe("login", () => {
+    let ctx;
+
+    beforeEach(() => {
+        vi.clearAllMocks()
+        ctx = createMockContext({
+            requestBody: {
+                username: "test",
+                email: "test@example.com",
+                password: "test"
+            },
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }) 
+    })
+
+    afterAll(() => {
+        vi.resetAllMocks()
+    })
+
+    it("should return an auth session upon successful login", async () => {
+        vi.spyOn(Account, "getAccount").mockResolvedValue({
+            password: await bcrypt.hash("test", await bcrypt.genSalt())
+        })
+        vi.spyOn(Session, "createSession").mockResolvedValue({token: "00000000-0000-0000-0000-000000000000"})
+
+        await accounts.login(ctx)
+        expect(Account.getAccount).toHaveBeenCalledTimes(1)
+        expect(Session.createSession).toHaveBeenCalledTimes(1)
+        expect(ctx.status).toBe(200)
+        expect(ctx.body).toStrictEqual({token: "00000000-0000-0000-0000-000000000000"})
+    })
+
+    it("should throw an error if password does not match", async () => {
+        vi.spyOn(Account, "getAccount").mockResolvedValue({password: ""})
+        await accounts.login(ctx)
+        expect(Account.getAccount).toHaveBeenCalledTimes(1)
+        expect(Session.createSession).toHaveBeenCalledTimes(0)
+        expect(ctx.status).toBe(400)
+        expect(ctx.body).toStrictEqual({message: "Invalid credentials"})
+    })
+})
+
+
