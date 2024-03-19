@@ -133,3 +133,36 @@
     background-color: #f0f0f0;
   }
   
+
+  .pot-choices {
+    position: absolute;
+    z-index: 1;
+  }
+
+.water-choice,
+.edit-choice,
+.info-choice,
+.delete-choice {
+  margin: 5px; /* Adjust spacing between options */
+  padding: 10px 20px; /* Adjust padding for options */
+  cursor: pointer;
+  background-color: #2D5039; /* Green background for options */
+  color: #ffffff; /* White text color for options */
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transition for background color and transform */
+}
+
+.water-choice:hover,
+.edit-choice:hover,
+.info-choice:hover,
+.delete-choice:hover {
+  background-color: #347d5b; /* Darker green background on hover */
+}
+
+.water-choice:active,
+.edit-choice:active,
+.info-choice:active,
+.delete-choice:active {
+  transform: translateY(2px); /* Add slight elevation on click */
+}
