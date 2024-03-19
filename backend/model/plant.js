@@ -3,7 +3,7 @@ const db = require('../db/db')
 const getPlantById = async (id) => {
     try {
         const results = await db.query(
-            'SELECT * FROM all_plants WHERE "id" = $1',
+            'SELECT * FROM all_plants WHERE "id" = $1;',
             [id]
         )
         return results.rows[0]
@@ -15,7 +15,7 @@ const getPlantById = async (id) => {
 const getPlantsByUser = async (userId) => {
     try {
         const results = await db.query(
-            `SELECT * FROM planted_veg WHERE "user" = $1`,
+            `SELECT * FROM planted_veg WHERE "user" = $1;`,
             [userId]
         );
         return results.rows;
@@ -30,7 +30,7 @@ const getPlantDetailsByUser = async (userId) => {
             `SELECT p.*, pv.growth_stage
             FROM all_plants p
             INNER JOIN planted_veg pv ON p.id = pv.plant_id
-            WHERE pv.user = $1`,
+            WHERE pv.user = $1;`,
             [userId]
         );
         return results.rows;
@@ -40,7 +40,7 @@ const getPlantDetailsByUser = async (userId) => {
 };
 
 const getAllPlants = async () => {
-    const results = await db.query("SELECT * FROM all_plants");
+    const results = await db.query("SELECT * FROM all_plants;");
     return results.rows;
 }
 
@@ -50,13 +50,27 @@ const addPlantForUser = async (user, plant) => {
     
     const response = await db.query(
         `INSERT INTO planted_veg ("user", plant_id, growth_stage, date_planted)
-            VALUES ($1, $2, $3, $4) RETURNING *`,
+            VALUES ($1, $2, $3, $4) RETURNING *;`,
         [user,  plant, 1, date]
     );
     return response.rows[0];
 }
 
-const deletePlant = async (plant) => {
+const incrementGrowthStage = async plant => {
+    const response = await db.query(
+        `UPDATE planted_veg
+            SET growth_stage = growth_stage + 1
+            WHERE id = $1
+            RETURNING *;`, 
+        [plant]);
+    try {
+        return response.rows[0];
+    } catch {
+        throw new Error("Plant not found");
+    }
+}
+
+const deletePlant = async plant => {
     return await db.query("DELETE FROM planted_veg WHERE id = $1", [plant]);
 }
 
@@ -66,5 +80,6 @@ module.exports = {
     getPlantDetailsByUser,
     getAllPlants,
     addPlantForUser,
+    incrementGrowthStage,
     deletePlant
 }

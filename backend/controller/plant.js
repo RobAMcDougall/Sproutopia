@@ -45,6 +45,15 @@ const addPlantForUser = async ctx => {
     }
 }
 
+const incrementGrowthStage = async ctx => {
+    try {
+        ctx.body = await Plant.incrementGrowthStage(ctx.params.plant);
+        ctx.status = 200;
+    } catch {
+        ctx.status = 404;
+    }
+}
+
 const deletePlant = async ctx => {
     ctx.body = await Plant.deletePlant(ctx.params.plant);
     ctx.status = 204;
@@ -56,5 +65,6 @@ module.exports = {
     getPlantsDetailsByUser,
     getAllPlants,
     addPlantForUser,
+    incrementGrowthStage,
     deletePlant
 }
