@@ -63,7 +63,8 @@
   margin-bottom: 15px;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  background-color: rgba(248, 254, 230, 0.8);
+  border: 1px solid #2d5039;
 }
 
 .form-label {
@@ -102,7 +103,7 @@
 }
 
 .button-wrap {
-  width: 33%;
+  width: 15%;
   margin: 0 auto;
 }
 
