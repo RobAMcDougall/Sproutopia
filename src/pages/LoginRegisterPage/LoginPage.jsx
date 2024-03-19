@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./LoginRegister.css";
 
 const LoginPage = () => {
@@ -36,7 +37,9 @@ const LoginPage = () => {
         <div className="button-wrap">
           <input className="login-button" type="submit" value="Login" />
         </div>
-        <p className="no-account">Don't have an account? Signup here</p>
+        <p className="no-account">
+          Don't have an account? Signup <Link to="/register">here</Link>
+        </p>
       </form>
       <img
         className="bumblebee bumblebee2"

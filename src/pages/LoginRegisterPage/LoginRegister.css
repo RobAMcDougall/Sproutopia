@@ -67,6 +67,10 @@
   border: 1px solid #2d5039;
 }
 
+.login-register input:focus {
+  border: 1px solid #2d5039;
+}
+
 .form-label {
   padding-left: 174px;
   font-weight: bold;
