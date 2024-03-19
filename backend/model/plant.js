@@ -27,7 +27,7 @@ const getPlantsByUser = async (userId) => {
 const getPlantDetailsByUser = async (userId) => {
     try {
         const results = await db.query(
-            `SELECT p.*
+            `SELECT p.*, pv.growth_stage
             FROM all_plants p
             INNER JOIN planted_veg pv ON p.id = pv.plant_id
             WHERE pv.user = $1`,
