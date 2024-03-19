@@ -44,9 +44,22 @@ const getAllPlants = async () => {
     return results.rows;
 }
 
+const addPlantForUser = async (user, plant) => {
+    // Format today's date for SQL query
+    const date = (new Date()).toISOString().split("T")[0];
+    
+    const response = await db.query(
+        `INSERT INTO planted_veg ("user", plant_id, growth_stage, date_planted)
+            VALUES ($1, $2, $3, $4) RETURNING *`,
+        [user,  plant, 1, date]
+    );
+    return response.rows[0];
+}
+
 module.exports = {
     getPlantById,
     getPlantsByUser,
     getPlantDetailsByUser,
-    getAllPlants
+    getAllPlants,
+    addPlantForUser
 }

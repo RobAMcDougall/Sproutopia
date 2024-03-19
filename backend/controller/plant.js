@@ -36,10 +36,19 @@ const getAllPlants = async ctx => {
     }
 }
 
+const addPlantForUser = async ctx => {
+    try {
+        ctx.body = await Plant.addPlantForUser(ctx.params.user, ctx.params.plant);
+        ctx.status = 201;
+    } catch {
+        ctx.status = 400;
+    }
+}
 
 module.exports = {
     getPlantById,
     getPlantsByUser,
     getPlantsDetailsByUser,
-    getAllPlants
+    getAllPlants,
+    addPlantForUser
 }

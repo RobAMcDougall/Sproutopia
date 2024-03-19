@@ -16,9 +16,10 @@ accounts.get("/", controllers.account.getFromSession);
 app.use(accounts.routes()).use(accounts.allowedMethods());
 
 const plants = new Router({prefix: "/plants"});
-plants.get("/all", controllers.plant.getAllPlants);
 plants.get("/user/:user", controllers.plant.getPlantsByUser);
 plants.get("/user/:user/details", controllers.plant.getPlantsDetailsByUser);
+plants.post("/user/:user/:plant", controllers.plant.addPlantForUser);
+plants.get("/all", controllers.plant.getAllPlants);
 plants.get("/plant/:id", controllers.plant.getPlantById);
 app.use(plants.routes()).use(plants.allowedMethods());
 
