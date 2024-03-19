@@ -1,4 +1,5 @@
-// @vitest-enviroment node
+// @vitest-environment node (unnecessary)
+
 import { createMockContext } from "@story-health/vitest-koa-mocks"
 import { afterAll, describe, expect } from "vitest"
 
@@ -93,6 +94,63 @@ describe("login", () => {
         expect(Session.createSession).toHaveBeenCalledTimes(0)
         expect(ctx.status).toBe(400)
         expect(ctx.body).toStrictEqual({message: "Invalid credentials"})
+    })
+})
+
+describe("logout", () => {
+    let ctx;
+
+    beforeEach(() => {
+        vi.clearAllMocks()
+        ctx = createMockContext({headers: {
+            "Authorization": "00000000-0000-0000-0000-000000000000"
+        }})
+    })
+
+    afterAll(() => {
+        vi.resetAllMocks()
+    })
+
+    it("should delete an auth session on logout", async () => {
+        vi.spyOn(Session, "destroySession").mockResolvedValue(null)
+        await accounts.logout(ctx)
+        expect(ctx.status).toBe(204)
+    })
+
+    it("should throw an error on invalid logout requests", async () => {
+        vi.spyOn(Session, "destroySession").mockRejectedValue(new Error("Something went wrong"))
+        await accounts.logout(ctx)
+        expect(ctx.status).toBe(400)
+    })
+})
+
+describe("protect", () => {
+    let ctx;
+
+    beforeEach(() => {
+        vi.clearAllMocks()
+        ctx = createMockContext({headers: {
+            "Authorization": "00000000-0000-0000-0000-000000000000"
+        }})
+    })
+
+    afterAll(() => {
+        vi.resetAllMocks()
+    })
+
+    it("should allow access if logged in with a valid session token", async () => {
+        vi.spyOn(Session, "getSession").mockResolvedValue(null)
+        await accounts.protect(ctx, async () => ctx.body = "Approved")
+        expect(Session.getSession).toHaveBeenCalledTimes(1)
+        expect(ctx.status).toBe(200)
+        expect(ctx.body).toBe("Approved")
+    })
+
+    it("should deny access for any invalid session token", async () =>{
+        vi.spyOn(Session, "getSession").mockRejectedValue(new Error("Denied"))
+        await accounts.protect(ctx, async () => ctx.body = "Approved")
+        expect(ctx.status).toBe(403)
+        expect(ctx.body).toStrictEqual({error: "Denied"})
     })
 })
 
