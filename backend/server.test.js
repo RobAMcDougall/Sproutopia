@@ -1,4 +1,3 @@
-// @vitest-environment node
 const app = require("./app");
 
 const mockListen = vi.fn();

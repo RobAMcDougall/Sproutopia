@@ -1,5 +1,3 @@
-
-//  @vitest-environment node
 const db = require("../db/db")
 const account = require("./account")
 
