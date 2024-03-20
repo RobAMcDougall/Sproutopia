@@ -1,5 +1,5 @@
 import { createMockContext } from "@story-health/vitest-koa-mocks"
-import { afterAll, describe, expect } from "vitest"
+
 
 const plant = require("./plant")
 const Plant = require("../model/plant")
@@ -23,13 +23,24 @@ describe("getPlantById", () => {
 
     it("should handle error if plant not found", async () => {
         const ctx = createMockContext();
-        ctx.params = { id: 999 }; // Non-existing ID
+        ctx.params = { id: 999 }; 
         vi.spyOn(Plant, "getPlantById").mockResolvedValueOnce(null);
 
         await plant.getPlantById(ctx);
 
         expect(ctx.status).toBe(404);
     });
+
+    it("should handle internal server error", async () => {
+        const ctx = createMockContext();
+        ctx.params = { id: 1 };
+        vi.spyOn(Plant, "getPlantById").mockRejectedValueOnce(new Error("Internal Server Error"));
+
+        await plant.getPlantById(ctx);
+
+        expect(ctx.status).toBe(500);
+    });
+    
 });
 
 describe("getPlantsByUser", () => {
@@ -51,12 +62,22 @@ describe("getPlantsByUser", () => {
 
     it("should handle error if user not found", async () => {
         const ctx = createMockContext();
-        ctx.params = { user: 999 }; // Non-existing user
+        ctx.params = { user: 999 }; 
         vi.spyOn(Plant, "getPlantsByUser").mockResolvedValueOnce([]);
 
         await plant.getPlantsByUser(ctx);
 
-        expect(ctx.status).toBe(404); // Corrected from 200 to 404
+        expect(ctx.status).toBe(404); 
+    });
+
+    it("should handle internal server error", async () => {
+        const ctx = createMockContext();
+        ctx.params = { user: 1 };
+        vi.spyOn(Plant, "getPlantsByUser").mockRejectedValueOnce(new Error("Internal Server Error"));
+
+        await plant.getPlantsByUser(ctx);
+
+        expect(ctx.status).toBe(500);
     });
 });
 
@@ -79,12 +100,22 @@ describe("getPlantsDetailsByUser", () => {
 
     it("should handle error if user not found", async () => {
         const ctx = createMockContext();
-        ctx.params = { user: 999 }; // Non-existing user
+        ctx.params = { user: 999 }; 
         vi.spyOn(Plant, "getPlantDetailsByUser").mockResolvedValueOnce(null);
 
         await plant.getPlantsDetailsByUser(ctx);
 
         expect(ctx.status).toBe(404);
+    });
+
+    it("should handle internal server error", async () => {
+        const ctx = createMockContext();
+        ctx.params = { user: 1 };
+        vi.spyOn(Plant, "getPlantDetailsByUser").mockRejectedValueOnce(new Error("Internal Server Error"));
+
+        await plant.getPlantsDetailsByUser(ctx);
+
+        expect(ctx.status).toBe(500);
     });
 });
 
