@@ -13,7 +13,6 @@ import RecipeListPage from './pages/RecipeListPage'
 import RecipePage from './pages/RecipePage'
 import SideNav from './components/Kitchen/SideNav'
 
-
 const App = () => {
   return (
     <>
@@ -32,7 +31,7 @@ const App = () => {
       <Route path="*" element={<NotFoundPage />} />
      </Routes>
     </>
-  )
-}
+  );
+};
 
 export default App;

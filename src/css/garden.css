@@ -1,21 +1,51 @@
 .garden-page {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 100vh;
-  }
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  height: 100vh;
+  position: relative;
+}
 
 .plant-pots {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    row-gap: 70px;
-    column-gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 100px;
+  column-gap: 40px;
+  grid-auto-flow: row; 
 }
 
 .plant-pot {
-    width: 150px;
-    height: 150px;
+  width: 150px;
+  height: 150px;
+  position: relative;
 }
+
+.plant-pot:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  .plant-pots {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grass {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1; 
+}
+
+.sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1; 
+}
+
 
 .todo-list {
     position: absolute;
@@ -30,5 +60,246 @@
     left: 20px; 
 }
 
-
   
+.vegetable-overlay {
+  position: absolute;
+  bottom: 60%;
+  width: 60%;
+  left: 20%;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 2;
+  -webkit-animation-iteration-count: 2;
+}
+
+.vegetable-overlay:hover {
+  cursor: pointer;
+  animation-name: bounce;
+  -moz-animation-name: bounce;
+}
+
+@keyframes bounce {
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+
+  .popup-container {
+    position: fixed;
+    top: 50%;
+    height: 350px;
+    width: 350px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 0 15px #2d5039;
+  }
+  
+  .popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-title {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 20px;
+  }
+  
+  .input-container {
+    margin-bottom: 25px;
+  }
+  
+  .input-label {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .search-input,
+  .date-input {
+    width: 300px;
+    padding: 8px;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+  }
+  
+  .submit-button,
+  .cancel-button {
+    padding: 2% 3%;
+    background-color: #2D5039;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .submit-button {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+  }
+  
+  .cancel-button {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+  }
+  
+  .submit-button:hover, 
+  .cancel-button:hover{
+    background-color: #777777;
+  }
+  
+  .search-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .options-container {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    background-color: #d1d1d1;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    z-index: 1;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .option {
+    padding: 7px;
+    cursor: pointer;
+  }
+  
+  .option:hover {
+    background-color: #f0f0f0;
+  }
+  
+
+  /* .pot-choices {
+    position: absolute;
+    transform: translate(120%, -100%);
+    z-index: 1;
+  }
+
+.water-choice,
+.edit-choice,
+.info-choice,
+.delete-choice {
+  margin: 5px; 
+  text-align: center;
+  padding: 10px 15px; 
+  cursor: pointer;
+  background-color: #2D5039; 
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  transition: background-color 0.3s, transform 0.3s; 
+}
+
+.water-choice:hover,
+.edit-choice:hover,
+.info-choice:hover,
+.delete-choice:hover {
+  background-color: #347d5b; 
+}
+
+.water-choice:active,
+.edit-choice:active,
+.info-choice:active,
+.delete-choice:active {
+  transform: translateY(2px); 
+} */
+
+.pot-choices {
+  position: absolute;
+  transform: translate(-21%, -160%);
+  z-index: 1;
+  display: flex;
+  justify-content: space-around; /* Arrange items with space between them */
+}
+
+.left-options,
+.right-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.left-options .option,
+.right-options .option {
+  margin: 5px 25px;
+  text-align: center;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #2D5039;
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.left-options .option:hover,
+.right-options .option:hover {
+  background-color: #347d5b;
+  transform: scale(1.1);
+}
+
+.left-options .option:active,
+.right-options .option:active {
+  transform: translateY(2px);
+}
+
+.confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.confirmation-modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.confirmation-modal p {
+  margin-bottom: 10px;
+}
+
+.confirmation-modal button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color: #2D5039;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirmation-modal button:hover {
+  background-color: #347d5b;
+}
