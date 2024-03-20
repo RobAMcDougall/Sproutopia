@@ -1,8 +1,11 @@
 import React from 'react'
+import RecipeList from '../components/Recipe/RecipeList'
 
 const RecipePage = () => {
   return (
-    <div>RecipePage</div>
+    <div>
+      <RecipeList />
+    </div>
   )
 }
 

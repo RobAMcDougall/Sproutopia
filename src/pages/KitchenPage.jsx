@@ -5,7 +5,6 @@ import WelcomeBackground from "../assets/welcome-background.png"
 const KitchenPage = () => {
   return (
     <div className='kitchen'>
-      <SideNav />
       <Welcome />
     </div>  
   )

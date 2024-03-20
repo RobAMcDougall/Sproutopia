@@ -11,6 +11,7 @@ import PlantInfoPage from './pages/PlantInfoPage/PlantInfoPage'
 import SearchPage from './pages/SearchPage'
 import RecipeListPage from './pages/RecipeListPage'
 import RecipePage from './pages/RecipePage'
+import SideNav from './components/Kitchen/SideNav'
 
 
 const App = () => {
@@ -23,11 +24,13 @@ const App = () => {
       <Route path="/garden" element={<GardenPage />} />
       <Route path="/plant/:id" element={<PlantInfoPage />} />
       <Route path="/calendar" element={<CalendarPage />} />
+      <Route path="/" element={<SideNav/>}> 
       <Route path="/kitchen" element={<KitchenPage />} />
       <Route path="/recipes" element={<RecipeListPage />} />
       <Route path="/recipes/:id" element={<RecipePage />} />
+      </Route>
       <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+     </Routes>
     </>
   )
 }
