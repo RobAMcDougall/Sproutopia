@@ -5,7 +5,7 @@ export default function RegisterPage() {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
   });
@@ -42,7 +42,7 @@ export default function RegisterPage() {
       }
       navigate("/login");
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error:", errorMessage);
     }
   };
 
