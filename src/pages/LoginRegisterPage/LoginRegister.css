@@ -1,0 +1,120 @@
+.login-page {
+  margin: 0 auto;
+  margin-left: 30px;
+  padding-top: 83px;
+  padding-bottom: 83px;
+}
+
+.logo-header {
+  display: block;
+  margin: 0 auto;
+  margin-top: 250px;
+  margin-bottom: 100px;
+  width: 812px;
+  height: 96px;
+}
+
+/* .bumblebee {
+  height: 68px;
+  width: 60px;
+} */
+
+.bumblebee1 {
+  position: absolute;
+  margin-left: 975px;
+}
+
+.bumblebee2 {
+  position: absolute;
+  margin-top: -20px;
+  margin-left: 1810px;
+}
+
+.login-register-page h1 {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+  margin: 20px;
+  margin-bottom: 0px;
+  color: #2d5039;
+}
+
+.login-register-page h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+  margin: 20px;
+  margin-top: 0px;
+  color: #2d5039;
+}
+
+.login-register {
+  display: block;
+  margin: 0 auto;
+  width: 30%;
+}
+
+.login-register input {
+  display: block;
+  margin: 0 auto;
+  width: 60%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(248, 254, 230, 0.8);
+  border: 1px solid #2d5039;
+}
+
+.login-register input:focus {
+  border: transparent;
+}
+
+.form-label {
+  padding-left: 174px;
+  font-weight: bold;
+  color: #44526a;
+}
+
+.login-register .name,
+.login-register .email,
+.login-register .userdetails,
+.login-register .password {
+  display: flex;
+  gap: 10px;
+}
+
+.login-register .email input {
+  width: calc(100% - 5px);
+}
+
+.login-register input[type="submit"] {
+  font-family: "Poppins";
+  font-weight: 600;
+  width: 100%;
+  height: 40px;
+  background-color: #2d5039;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.login-register input[type="submit"]:hover {
+  background-color: #2d5039;
+}
+
+.button-wrap {
+  width: 15%;
+  margin: 0 auto;
+}
+
+.login-register .no-account {
+  padding-top: 0px;
+  margin-top: 0px;
+  text-align: center;
+  font-weight: 500;
+  color: #2d5039;
+}
