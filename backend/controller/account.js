@@ -44,8 +44,9 @@ const updatePreferences = async (ctx) => {
 
         const data = {id, preferences}
         
-        if (!data.id || !data.preferences){
-            throw new Error("No id or preferences passed")
+        // You should still be able to pass empty preferences object
+        if (!data.id ){
+            throw new Error("No id was passed")
         } else {
             ctx.body = await Account.updatePreferences(data)
         }

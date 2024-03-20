@@ -102,23 +102,23 @@ describe("updatePreferences", () => {
     const testPreferences = {
         allergies: ["peanuts"],
         favourites: ["cheese"]
-    }
+    };
     
     let ctx;
 
     beforeEach(() => {
-        vi.clearAllMocks()
+        vi.clearAllMocks();
         ctx = createMockContext({
             requestBody: testPreferences,
             headers: {
                 "Content-Type": "application/json"
             }
         });
-        ctx.params = {id: 1};
+        ctx.params = { id: 1 };
     });
 
-    afterAll(() => {
-        vi.resetAllMocks()
+    afterEach(() => {
+        vi.resetAllMocks();
     });
 
     it("should successfully update a user's preferences", async () => {
@@ -134,7 +134,20 @@ describe("updatePreferences", () => {
         await account.updatePreferences(ctx);
         expect(ctx.status).toBe(200);
     });
-})
+
+    it("should throw an error if id or preferences are not passed", async () => {
+
+        vi.spyOn(Account, "updatePreferences").mockResolvedValueOnce(undefined);
+
+        ctx.params = {};
+        await account.updatePreferences(ctx);
+        expect(ctx.status).toBe(400);
+        expect(ctx.body).toEqual({ message: "No id was passed" });
+        
+        
+    });
+
+});
 
 describe("logout", () => {
     let ctx;
