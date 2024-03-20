@@ -37,6 +37,23 @@ const login = async (ctx) => {
     }
 }
 
+const updatePreferences = async (ctx) => {
+    try{
+        const data = ctx.request.body
+        
+        if (!data.id || !data.preferences){
+            throw new Error("No id or preferences passed")
+        } else {
+            ctx.body = await Account.updatePreferences(data)
+        }
+    } catch (err) {
+        ctx.status = 400
+        ctx.body ={
+            message: err.message
+        }
+    }
+}
+
 const getFromSession = async ctx => {
     try {
         ctx.body = await Account.getFromSession(ctx.request.get("Authorization"));
@@ -74,6 +91,7 @@ const protect = async (ctx, next) => {
 module.exports = {
     register,
     login,
+    updatePreferences,
     getFromSession,
     logout,
     protect

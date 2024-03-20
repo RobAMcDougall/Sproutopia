@@ -11,6 +11,7 @@ const controllers = require("./controller");
 const accounts = new Router({prefix: "/account"});
 accounts.post("/register", controllers.account.register);
 accounts.post("/login", controllers.account.login);
+accounts.patch("/preferences", controllers.account.updatePreferences)
 accounts.delete("/logout", controllers.account.logout);
 accounts.get("/", controllers.account.getFromSession);
 app.use(accounts.routes()).use(accounts.allowedMethods());
