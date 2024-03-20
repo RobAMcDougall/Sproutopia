@@ -39,7 +39,10 @@ const login = async (ctx) => {
 
 const updatePreferences = async (ctx) => {
     try{
-        const data = ctx.request.body
+        const preferences = ctx.request.body
+        const id = ctx.params.id
+
+        const data = {id, preferences}
         
         if (!data.id || !data.preferences){
             throw new Error("No id or preferences passed")
