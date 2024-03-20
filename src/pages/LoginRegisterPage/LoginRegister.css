@@ -68,7 +68,7 @@
 }
 
 .login-register input:focus {
-  border: 1px solid #2d5039;
+  border: transparent;
 }
 
 .form-label {

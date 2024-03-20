@@ -18,12 +18,12 @@ const LoginPage = () => {
       <h1>Existing User?</h1>
       <h2>Login to your account</h2>
       <form className="login-register">
-        <p className="form-label">Email address</p>
+        <p className="form-label">Username or email address</p>
         <input
           type="text"
           id="email"
           name="email"
-          placeholder="Enter your email address"
+          placeholder="Enter your username or email address"
           required
         />
         <p className="form-label">Password</p>
