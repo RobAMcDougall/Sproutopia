@@ -1,0 +1,187 @@
+import { createMockContext } from "@story-health/vitest-koa-mocks"
+import { afterAll, describe, expect } from "vitest"
+
+const plant = require("./plant")
+const Plant = require("../model/plant")
+
+describe("getPlantById", () => {
+    afterEach(() => {
+        vi.resetAllMocks();
+    });
+
+    it("should return plant by ID", async () => {
+        const ctx = createMockContext();
+        ctx.params = { id: 1 };
+        const fakePlant = { id: 1, name: "Fake Plant" };
+        vi.spyOn(Plant, "getPlantById").mockResolvedValueOnce(fakePlant);
+
+        await plant.getPlantById(ctx);
+
+        expect(ctx.status).toBe(200);
+        expect(ctx.body).toEqual(fakePlant);
+    });
+
+    it("should handle error if plant not found", async () => {
+        const ctx = createMockContext();
+        ctx.params = { id: 999 }; // Non-existing ID
+        vi.spyOn(Plant, "getPlantById").mockResolvedValueOnce(null);
+
+        await plant.getPlantById(ctx);
+
+        expect(ctx.status).toBe(404);
+    });
+});
+
+describe("getPlantsByUser", () => {
+    afterEach(() => {
+        vi.resetAllMocks();
+    });
+
+    it("should return plants by user", async () => {
+        const ctx = createMockContext();
+        ctx.params = { user: 1 };
+        const fakePlants = [{ id: 1, name: "Fake Plant 1" }, { id: 2, name: "Fake Plant 2" }];
+        vi.spyOn(Plant, "getPlantsByUser").mockResolvedValueOnce(fakePlants);
+
+        await plant.getPlantsByUser(ctx);
+
+        expect(ctx.status).toBe(200);
+        expect(ctx.body).toEqual(fakePlants);
+    });
+
+    it("should handle error if user not found", async () => {
+        const ctx = createMockContext();
+        ctx.params = { user: 999 }; // Non-existing user
+        vi.spyOn(Plant, "getPlantsByUser").mockResolvedValueOnce([]);
+
+        await plant.getPlantsByUser(ctx);
+
+        expect(ctx.status).toBe(404); // Corrected from 200 to 404
+    });
+});
+
+describe("getPlantsDetailsByUser", () => {
+    afterEach(() => {
+        vi.resetAllMocks();
+    });
+
+    it("should return plant details by user", async () => {
+        const ctx = createMockContext();
+        ctx.params = { user: 1 };
+        const fakePlantDetails = [{ id: 1, name: "Fake Plant" }];
+        vi.spyOn(Plant, "getPlantDetailsByUser").mockResolvedValueOnce(fakePlantDetails);
+
+        await plant.getPlantsDetailsByUser(ctx);
+
+        expect(ctx.status).toBe(200);
+        expect(ctx.body).toEqual(fakePlantDetails);
+    });
+
+    it("should handle error if user not found", async () => {
+        const ctx = createMockContext();
+        ctx.params = { user: 999 }; // Non-existing user
+        vi.spyOn(Plant, "getPlantDetailsByUser").mockResolvedValueOnce(null);
+
+        await plant.getPlantsDetailsByUser(ctx);
+
+        expect(ctx.status).toBe(404);
+    });
+});
+
+describe("getAllPlants", () => {
+    afterEach(() => {
+        vi.resetAllMocks();
+    });
+
+    it("should return all plants", async () => {
+        const ctx = createMockContext();
+        const fakePlants = [{ id: 1, name: "Fake Plant 1" }, { id: 2, name: "Fake Plant 2" }];
+        vi.spyOn(Plant, "getAllPlants").mockResolvedValueOnce(fakePlants);
+
+        await plant.getAllPlants(ctx);
+
+        expect(ctx.status).toBe(200);
+        expect(ctx.body).toEqual(fakePlants);
+    });
+
+    it("should handle error if fetching plants fails", async () => {
+        const ctx = createMockContext();
+        vi.spyOn(Plant, "getAllPlants").mockRejectedValueOnce(new Error("Query failed"));
+
+        await plant.getAllPlants(ctx);
+
+        expect(ctx.status).toBe(500);
+    });
+});
+
+describe("addPlantForUser", () => {
+    afterEach(() => {
+        vi.resetAllMocks();
+    });
+
+    it("should add a plant for a user", async () => {
+        const ctx = createMockContext();
+        ctx.params = { user: 1, plant: 1 };
+        const fakePlant = { id: 1, name: "Fake Plant" };
+        vi.spyOn(Plant, "addPlantForUser").mockResolvedValueOnce(fakePlant);
+
+        await plant.addPlantForUser(ctx);
+
+        expect(ctx.status).toBe(201);
+        expect(ctx.body).toEqual(fakePlant);
+    });
+
+    it("should handle error if adding plant fails", async () => {
+        const ctx = createMockContext();
+        vi.spyOn(Plant, "addPlantForUser").mockRejectedValueOnce(new Error("Query failed"));
+
+        await plant.addPlantForUser(ctx);
+
+        expect(ctx.status).toBe(400);
+    });
+});
+
+describe("incrementGrowthStage", () => {
+    afterEach(() => {
+        vi.resetAllMocks();
+    });
+
+    it("should increment growth stage of a plant", async () => {
+        const ctx = createMockContext();
+        ctx.params = { plant: 1 };
+        const fakePlant = { id: 1, name: "Fake Plant", growth_stage: 2 };
+        vi.spyOn(Plant, "incrementGrowthStage").mockResolvedValueOnce(fakePlant);
+
+        await plant.incrementGrowthStage(ctx);
+
+        expect(ctx.status).toBe(200);
+        expect(ctx.body).toEqual(fakePlant);
+    });
+
+    it("should handle error if plant not found", async () => {
+        const ctx = createMockContext();
+        vi.spyOn(Plant, "incrementGrowthStage").mockResolvedValueOnce(undefined);
+
+        await plant.incrementGrowthStage(ctx);
+
+        expect(ctx.status).toBe(404);
+    });
+});
+
+describe("deletePlant", () => {
+    afterEach(() => {
+        vi.resetAllMocks();
+    });
+
+    it("should delete a plant", async () => {
+        const ctx = createMockContext();
+        ctx.params = { plant: 1 };
+        vi.spyOn(Plant, "deletePlant").mockResolvedValueOnce(undefined);
+
+        await plant.deletePlant(ctx);
+
+        expect(ctx.status).toBe(204);
+        expect(ctx.body).toBeUndefined();
+    });
+});
+
