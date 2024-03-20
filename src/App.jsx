@@ -12,6 +12,7 @@ import PlantInfoPage from "./pages/PlantInfoPage/PlantInfoPage";
 import SearchPage from "./pages/SearchPage";
 import RecipeListPage from "./pages/RecipeListPage";
 import RecipePage from "./pages/RecipePage";
+import Navbar from "./components/Header/Navbar";
 
 const App = () => {
   return (
@@ -21,12 +22,15 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/garden" element={<GardenPage />} />
-        <Route path="/plant/:id" element={<PlantInfoPage />} />
-        <Route path="/calendar" element={<CalendarPage />} />
-        <Route path="/kitchen" element={<KitchenPage />} />
-        <Route path="/recipes" element={<RecipeListPage />} />
-        <Route path="/recipes/:id" element={<RecipePage />} />
+        <Route path="/garden" element={<Navbar />}>
+          <Route index element={<GardenPage />} />
+          <Route path="/plant/:id" element={<PlantInfoPage />} />
+          <Route path="/calendar" element={<CalendarPage />} />
+          <Route path="/kitchen" element={<KitchenPage />} />
+          <Route path="/recipes" element={<RecipeListPage />} />
+          <Route path="/recipes/:id" element={<RecipePage />} />
+        </Route>
+
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

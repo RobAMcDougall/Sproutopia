@@ -10,10 +10,10 @@ function Navbar() {
   // };
   return (
     <>
-      <div className="header">
+      <div className="navbar">
         <div className="logo-container">
           <NavLink to="/">
-            <img className="logo" src="" />
+            <img className="logo" src="src/assets/logo-header.png" />
           </NavLink>
         </div>
         <nav className="navLink">
