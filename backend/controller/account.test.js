@@ -2,6 +2,7 @@
 
 import { createMockContext } from "@story-health/vitest-koa-mocks"
 import { afterAll, describe, expect } from "vitest"
+import {account} from "./index";
 
 const bcrypt = require("bcryptjs")
 const accounts = require("./account")
@@ -95,6 +96,44 @@ describe("login", () => {
         expect(ctx.status).toBe(400)
         expect(ctx.body).toStrictEqual({message: "Invalid credentials"})
     })
+})
+
+describe("updatePreferences", () => {
+    const testPreferences = {
+        allergies: ["peanuts"],
+        favourites: ["cheese"]
+    }
+    
+    let ctx;
+
+    beforeEach(() => {
+        vi.clearAllMocks()
+        ctx = createMockContext({
+            requestBody: testPreferences,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        ctx.params = {id: 1};
+    });
+
+    afterAll(() => {
+        vi.resetAllMocks()
+    });
+
+    it("should successfully update a user's preferences", async () => {
+        const testAccount = {
+            id: 1,
+            username: "test",
+            password: "test",
+            email: "test@test.com",
+            preferences: testPreferences
+        };
+        
+        vi.spyOn(Account, "updatePreferences").mockResolvedValueOnce(testAccount);
+        await account.updatePreferences(ctx);
+        expect(ctx.status).toBe(200);
+    });
 })
 
 describe("logout", () => {
