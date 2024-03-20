@@ -118,7 +118,16 @@ describe("getPlantDetailsByUser", () => {
       expect(db.query).toHaveBeenCalledTimes(1);
     });
   
-    
+    it("should throw an error if a plant is not found", async () => {
+        vi.spyOn(db, "query").mockResolvedValueOnce({});
+        
+        try {
+            await plant.incrementGrowthStage(1);
+        } catch (err) {
+            expect(err).toBeDefined();
+            expect(err.message).toBe("Plant not found");
+        }
+    })
   });
   
   describe("deletePlant", () => {
