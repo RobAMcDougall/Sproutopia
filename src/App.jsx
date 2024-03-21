@@ -5,7 +5,7 @@ import CalendarPage from "./pages/CalendarPage";
 import GardenPage from "./pages/GardenPage";
 import KitchenPage from "./pages/KitchenPage";
 import LandingPage from "./pages/LandingPage";
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./pages/LoginRegisterPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import PlantInfoPage from "./pages/PlantInfoPage/PlantInfoPage";
 import SearchPage from "./pages/SearchPage";
