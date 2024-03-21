@@ -5,6 +5,8 @@ import '../css/garden.css';
 import grassImage from '../assets/grass.svg';
 import skyImage from '../assets/sky.svg';
 import potImage from '../assets/pot.svg';
+import ToDoList from '../components/Garden/ToDoList';
+import WeatherWidget from '../components/Garden/WeatherWidget';
 
 const GardenPage = () => {
   const [pots, setPots] = useState(() => {
@@ -16,6 +18,7 @@ const GardenPage = () => {
   const [potOptionsVisible, setPotOptionsVisible] = useState(Array(8).fill(false));
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [deletePlantId, setDeletePlantId] = useState(null);
+  const [animationCoordinates, setAnimationCoordinates] = useState(null);
   const menuRefs = useRef(Array(8).fill(null));
 
   const navigate = useNavigate();
@@ -57,35 +60,42 @@ const GardenPage = () => {
     }
   };
 
-  const handleWater = (plantId) => {
+  const handleWater = (plantId, index) => {
     console.log("Plant watered with ID", plantId);
     closeMenu();
+    const potElement = document.querySelector(`#pot-${index}`);
+    const potRect = potElement.getBoundingClientRect();
+    setAnimationCoordinates({
+      top: potRect.top + window.scrollY,
+      left: potRect.left + window.scrollX,
+    });
+    setTimeout(() => {
+      setAnimationCoordinates(null);
+    }, 1500); // Adjust duration as needed
     // Perform water action based on plantId
   };
+  
 
   const handleEdit = (plantId) => {
-    console.log("Edit plant with ID", plantId);
+    console.log("Harvested plant with ID", plantId);
     closeMenu();
-    // Perform edit action based on plantId
   };
 
   const handlePlantInfo = (plantId) => {
     navigate(`/plant/${plantId}`);
     closeMenu();
-    // Navigate to plant details page based on plantId
   };
 
   const handleDelete = (plantId) => {
     setShowDeleteConfirmation(true);
     setDeletePlantId(plantId);
     closeMenu();
-    // Set plant ID for deletion confirmation
   };
 
   const confirmDelete = () => {
     const updatedPots = pots.map(plant => {
       if (plant && plant.id === deletePlantId) {
-        return null; // Remove only the plant with the matching ID
+        return null;
       }
       return plant;
     });
@@ -119,11 +129,13 @@ const GardenPage = () => {
 
   return (
     <div className="garden-page">
+    <ToDoList/>
+    <WeatherWidget/>
       <img src={skyImage} alt="sky" className="sky" />
       <div className="plant-pots">
         {pots.map((plant, index) => (
           <div key={index} className="plant-pot-container">
-            <div className="plant-pot" onClick={() => handlePotClick(index)}>
+            <div className="plant-pot" id={`pot-${index}`} onClick={() => handlePotClick(index)}>
               <img src={potImage} alt="Pot" />
               {plant && <img className="vegetable-overlay" src={plant.iconUrl} alt={plant.name} />}
             </div>
@@ -133,8 +145,8 @@ const GardenPage = () => {
                 className="pot-choices"
               >
                 <div className="left-options">
-                  <div className="water-choice option" onClick={() => handleWater(plant.id)}>Water</div>
-                  <div className="edit-choice option" onClick={() => handleEdit(plant.plant_id)}>Edit</div>
+                  <div className="water-choice option" onClick={() => handleWater(plant.id, index)}>Water</div>
+                  <div className="edit-choice option" onClick={() => handleEdit(plant.id)}>Harvest</div>
                 </div>
                 <div className="right-options">
                   <div className="info-choice option" onClick={() => handlePlantInfo(plant.id)}>Details</div>
@@ -142,6 +154,9 @@ const GardenPage = () => {
                 </div>
               </div>
             }
+            {animationCoordinates && animationCoordinates.top && animationCoordinates.left && (
+              <WateringCanAnimation coordinates={animationCoordinates} />
+            )}
           </div>
         ))}
         <AddPlantForm
@@ -163,5 +178,12 @@ const GardenPage = () => {
     </div>
   );
 };
+
+const WateringCanAnimation = ({ coordinates }) => (
+  <div className="watering-can-animation" style={{ top: coordinates.top, left: coordinates.left }}>
+    <div className="watering-can"></div>
+  </div>
+);
+
 
 export default GardenPage;
