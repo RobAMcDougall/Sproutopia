@@ -15,7 +15,7 @@ export default function RegisterPage() {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
-    preferences: [],
+    preferences: {},
     password: "",
   });
 
@@ -37,7 +37,6 @@ export default function RegisterPage() {
     e.preventDefault();
     try {
       const preferences = selectedPreference.map(pref => pref);
-      console.log(preferences);
       setFormData(prevState => ({
         ...prevState,
         preferences: preferences,
@@ -54,6 +53,7 @@ export default function RegisterPage() {
         "https://sproutopia-backend.onrender.com/account/register",
         options
       );
+      
       if (!response.ok) {
         setErrorMessage("An account already exists with this email.");
         setTimeout(() => {
@@ -61,6 +61,8 @@ export default function RegisterPage() {
         }, 5000);
         return;
       }
+      const responseData = await response.json(); 
+      console.log(responseData);
       navigate("/login");
     } catch (error) {
     }
