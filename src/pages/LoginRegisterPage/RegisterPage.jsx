@@ -10,7 +10,6 @@ export default function RegisterPage() {
 
   const handlePreferenceSelection = selectedPreference => {
     setSelectedPreference(selectedPreference);
-    console.log(selectedPreference);
   };
 
   const [formData, setFormData] = useState({
