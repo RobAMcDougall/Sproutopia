@@ -8,7 +8,7 @@ const getPlantById = async (id) => {
         )
         return results.rows[0]
     } catch {
-        throw new Error('Error getting plant by name')
+        throw new Error('Error getting plant by id')
     }
 }
 

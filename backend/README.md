@@ -22,6 +22,8 @@
 | `plants/user/:plant` | `PATCH` | Takes in a planted plant unique id and increments its growth stage by 1  | None
 | `/plants/user/:plant` | `DELETE` | Deletes a planted plant by its unique id | None
 | --- | --- | --- | --- |
-| `/account/register` | `POST` | Creates a new user. | username (str), email(str), password(str)
+| `/account/register` | `POST` | Creates a new user. OPTIONALLY takes in preferences as a JSON | username (str), email(str), password(str), OPTIONAL preferences(JSON)
 | `/account/login` | `POST` | Creates a new session. Can accept either username or email. | username(str) OR email (str) AND password (str)
+| `/account/` | `GET` | Gets all of the user info including the preferences. Needs the Authorization : token header | None
+| `/account/preferences/:id` | `GET` | Updates the user's preferences by his id specified in params | preferences(JSON)
 | `/account/logout` | `DELETE` | Deletes the current session. Needs the Authorization : token header | None
