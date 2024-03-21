@@ -10,7 +10,7 @@ const chatWithGPT3 = async (userInput) => {
     const apiEndpoint = 'https://api.openai.com/v1/engines/davinci-codex/completions';
     const headers = {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer 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`
+      'Authorization': `Bearer `
     };
 
     const data = {
