@@ -36,7 +36,6 @@ export default function RegisterPage() {
 
   const handleRegister = async e => {
     e.preventDefault();
-    console.log(formData);
     try {
       const preferences = selectedPreference.map(pref => pref);
       console.log(preferences);
@@ -44,7 +43,6 @@ export default function RegisterPage() {
         ...prevState,
         preferences: preferences,
       }));
-      console.log(formData);
       const options = {
         method: "POST",
         headers: {
