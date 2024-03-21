@@ -7,12 +7,16 @@ export default function RegisterPage() {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const [selectedPreference, setSelectedPreference] = useState([]);
+
   const handlePreferenceSelection = selectedPreference => {
     setSelectedPreference(selectedPreference);
+    console.log(selectedPreference);
   };
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
+    preferences: [],
     password: "",
   });
 
@@ -32,7 +36,15 @@ export default function RegisterPage() {
 
   const handleRegister = async e => {
     e.preventDefault();
+    console.log(formData);
     try {
+      const preferences = selectedPreference.map(pref => pref);
+      console.log(preferences);
+      setFormData(prevState => ({
+        ...prevState,
+        preferences: preferences,
+      }));
+      console.log(formData);
       const options = {
         method: "POST",
         headers: {
@@ -54,7 +66,7 @@ export default function RegisterPage() {
       }
       navigate("/login");
     } catch (error) {
-      console.error("Error:", errorMessage);
+      console.error("Error:", error);
     }
   };
 
@@ -77,8 +89,8 @@ export default function RegisterPage() {
         <input
           onChange={handleInputChange}
           type="text"
-          id="name"
-          name="name"
+          id="username"
+          name="username"
           placeholder="Enter a username"
           required
         />
@@ -94,29 +106,12 @@ export default function RegisterPage() {
         <p className="form-label">Food preferences</p>
         <Select
           className="food-preference-form"
+          name="preference"
           options={foodPreferences}
           value={selectedPreference}
           onChange={handlePreferenceSelection}
           isMulti={true}
           placeholder="Select your preferences"
-          // styles={{
-          //   menu: provided => ({
-          //     ...provided,
-          //     backgroundColor: "rgba(248, 254, 230, 0.8)",
-          //     borderColor: "#2d5039",
-          //     border: "1px solid #2d5039",
-          //   }),
-          //   control: (provided, state) => ({
-          //     ...provided,
-          //     backgroundColor: "rgba(248, 254, 230, 0.8)",
-          //     borderColor: state.isFocused ? "#2d5039" : "#ced4da",
-          //     borderWidth: "1px",
-          //     borderRadius: "5px",
-          //     boxShadow: state.isFocused
-          //       ? "0 0 0 0.2rem rgba(45, 80, 57, 0.25)"
-          //       : "",
-          //   }),
-          // }}
           styles={{
             menu: provided => ({
               ...provided,
