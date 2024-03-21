@@ -12,6 +12,18 @@ const getPlantById = async (id) => {
     }
 }
 
+const getUserPlant = async (id) => {
+    try {
+        const result = await db.query(
+            "SELECT * FROM planted_veg WHERE id = $1",
+            [id]
+        );
+        return result.rows[0];
+    } catch {
+        throw new Error("User plant not found");
+    }
+}
+
 const getPlantsByUser = async (userId) => {
     try {
         const results = await db.query(
@@ -76,6 +88,7 @@ const deletePlant = async plant => {
 
 module.exports = {
     getPlantById,
+    getUserPlant,
     getPlantsByUser,
     getPlantDetailsByUser,
     getAllPlants,

@@ -1,4 +1,21 @@
 const Plant = require("../model/plant")
+const Account = require("../model/account");
+
+const isOwnPlant = async ctx => {
+    try {
+        const currentUser = await Account.getFromSession(ctx.request.get("Authorization"));
+        const plant = await Plant.getUserPlant(ctx.params.plant);
+        const belongsToUser = plant.user === currentUser.id;
+        
+        if (!belongsToUser) {
+            ctx.status = 403;
+        }
+        
+        return belongsToUser;
+    } catch {
+        throw new Error("User or plant not found");
+    }
+}
 
 const getPlantById = async (ctx) => {
     try {
@@ -62,16 +79,20 @@ const addPlantForUser = async ctx => {
 
 const incrementGrowthStage = async ctx => {
     try {
-        ctx.body = await Plant.incrementGrowthStage(ctx.params.plant);
-        ctx.status = 200;
+        if (await isOwnPlant(ctx)) {
+            ctx.body = await Plant.incrementGrowthStage(ctx.params.plant);
+            ctx.status = 200;
+        }
     } catch {
         ctx.status = 404;
     }
 }
 
 const deletePlant = async ctx => {
-    ctx.body = await Plant.deletePlant(ctx.params.plant);
-    ctx.status = 204;
+    if (await isOwnPlant(ctx)) {
+        ctx.body = await Plant.deletePlant(ctx.params.plant);
+        ctx.status = 204;
+    }
 }
 
 module.exports = {
@@ -81,5 +102,6 @@ module.exports = {
     getAllPlants,
     addPlantForUser,
     incrementGrowthStage,
-    deletePlant
+    deletePlant,
+    isOwnPlant
 }

@@ -27,6 +27,24 @@ describe("getPlantById", () => {
     });
 });
 
+describe("getUserPlant", () => {
+    it("should return user plant by id", async () => {
+        const fakePlant = { id: 1, user: 1 };
+        vi.spyOn(db, "query").mockResolvedValueOnce({ rows: [fakePlant] });
+
+        const result = await plant.getUserPlant(1);
+
+        expect(result).toEqual(fakePlant);
+        expect(db.query).toHaveBeenCalledTimes(1);
+    });
+
+    it("should throw an error if query fails", async () => {
+        vi.spyOn(db, "query").mockRejectedValueOnce(new Error("Query failed"));
+
+        await expect(plant.getUserPlant(1)).rejects.toThrow("User plant not found");
+    });
+});
+
 describe("getPlantsByUser", () => {
     it("should return plants by user", async () => {
         const fakePlants = [{ id: 1, name: "Fake Plant 1" }, { id: 2, name: "Fake Plant 2" }];
