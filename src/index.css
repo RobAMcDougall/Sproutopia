@@ -3,5 +3,12 @@
 @tailwind utilities;
 
 body {
-    background-color: #DEF3C3;
+    background-color: #F8FEE6;
 }
+
+.kitchen {
+
+   background: url(./assets/welcome-background.png) no-repeat center center/cover;
+   min-height: 100vh;
+}
+ 

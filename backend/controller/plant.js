@@ -2,28 +2,43 @@ const Plant = require("../model/plant")
 
 const getPlantById = async (ctx) => {
     try {
-        ctx.body = await Plant.getPlantById(ctx.params.id)
-        ctx.status = 200
+        const plant = await Plant.getPlantById(ctx.params.id);
+        if (!plant) {
+            ctx.status = 404; 
+            return;
+        }
+        ctx.body = plant;
+        ctx.status = 200;
     } catch {
-        ctx.status = 404
+        ctx.status = 500
     }
 }
 
 const getPlantsByUser = async (ctx) => {
     try {
-        ctx.body = await Plant.getPlantsByUser(ctx.params.user)
-        ctx.status = 200
-    } catch {
-        ctx.status = 404
+        const plants = await Plant.getPlantsByUser(ctx.params.user);
+        if (!plants || plants.length === 0) {
+            ctx.status = 404; 
+        } else {
+            ctx.body = plants;
+            ctx.status = 200;
+        }
+    } catch (error) {
+        ctx.status = 500; 
     }
 }
 
 const getPlantsDetailsByUser = async (ctx) => {
     try {
-        ctx.body = await Plant.getPlantDetailsByUser(ctx.params.user)
-        ctx.status = 200
+        const plantDetails = await Plant.getPlantDetailsByUser(ctx.params.user);
+        if (!plantDetails) {
+            ctx.status = 404;
+            return;
+        }
+        ctx.body = plantDetails;
+        ctx.status = 200;
     } catch {
-        ctx.status = 404
+        ctx.status = 500; 
     }
 }
 

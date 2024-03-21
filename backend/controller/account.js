@@ -37,6 +37,27 @@ const login = async (ctx) => {
     }
 }
 
+const updatePreferences = async (ctx) => {
+    try{
+        const preferences = ctx.request.body
+        const id = ctx.params.id
+
+        const data = {id, preferences}
+        
+        // You should still be able to pass empty preferences object
+        if (!data.id ){
+            throw new Error("No id was passed")
+        } else {
+            ctx.body = await Account.updatePreferences(data)
+        }
+    } catch (err) {
+        ctx.status = 400
+        ctx.body ={
+            message: err.message
+        }
+    }
+}
+
 const getFromSession = async ctx => {
     try {
         ctx.body = await Account.getFromSession(ctx.request.get("Authorization"));
@@ -74,6 +95,7 @@ const protect = async (ctx, next) => {
 module.exports = {
     register,
     login,
+    updatePreferences,
     getFromSession,
     logout,
     protect

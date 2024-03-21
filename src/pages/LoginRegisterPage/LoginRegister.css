@@ -71,6 +71,34 @@
   border: transparent;
 }
 
+/* .login-register .food-preference-form {
+  display: block;
+  margin: 0 auto;
+  width: 60%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(248, 254, 230, 0.8);
+  border: 1px solid #2d5039;
+} */
+
+.login-register .food-preference-form {
+  width: 100%;
+  max-width: 60%;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  background-color: rgba(248, 254, 230, 0.8);
+  border: 1px solid #2d5039;
+ 
+}
+
+/* Remove border and background-color */
+.login-register .food-preference-form .css-1okebmr-indicatorSeparator,
+.login-register .food-preference-form .css-1uccc91-singleValue,
+.login-register .food-preference-form .css-1gtu0rj-indicatorContainer {
+  display: none;
+}
+
 .form-label {
   padding-left: 174px;
   font-weight: bold;

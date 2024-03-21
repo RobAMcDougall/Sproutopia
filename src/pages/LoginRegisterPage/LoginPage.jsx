@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import "./LoginRegister.css";
 
 const LoginPage = () => {
+
+
+  
   return (
     <div className="login-register-page">
       <img
