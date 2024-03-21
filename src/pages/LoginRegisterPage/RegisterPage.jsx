@@ -63,7 +63,6 @@ export default function RegisterPage() {
       }
       navigate("/login");
     } catch (error) {
-      console.error("Error:", error);
     }
   };
 
