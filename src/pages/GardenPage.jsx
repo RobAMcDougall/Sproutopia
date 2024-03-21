@@ -71,8 +71,7 @@ const GardenPage = () => {
     });
     setTimeout(() => {
       setAnimationCoordinates(null);
-    }, 1500); // Adjust duration as needed
-    // Perform water action based on plantId
+    }, 1500); 
   };
   
 

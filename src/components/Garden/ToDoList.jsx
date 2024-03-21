@@ -82,7 +82,7 @@ const ToDoList = () => {
           placeholder="Add new task"
           value={newTaskText}
           onChange={handleInputChange}
-          onKeyPress={handleKeyPress} // Call handleKeyPress function on key press
+          onKeyPress={handleKeyPress} 
         />
         <button onClick={handleAddTask}>Add Task</button>
       </div>

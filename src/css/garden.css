@@ -191,48 +191,12 @@
     background-color: #f0f0f0;
   }
   
-
-  /* .pot-choices {
-    position: absolute;
-    transform: translate(120%, -100%);
-    z-index: 1;
-  }
-
-.water-choice,
-.edit-choice,
-.info-choice,
-.delete-choice {
-  margin: 5px; 
-  text-align: center;
-  padding: 10px 15px; 
-  cursor: pointer;
-  background-color: #2D5039; 
-  color: #ffffff;
-  border: none;
-  border-radius: 50px;
-  transition: background-color 0.3s, transform 0.3s; 
-}
-
-.water-choice:hover,
-.edit-choice:hover,
-.info-choice:hover,
-.delete-choice:hover {
-  background-color: #347d5b; 
-}
-
-.water-choice:active,
-.edit-choice:active,
-.info-choice:active,
-.delete-choice:active {
-  transform: translateY(2px); 
-} */
-
 .pot-choices {
   position: absolute;
   transform: translate(-21%, -160%);
   z-index: 1;
   display: flex;
-  justify-content: space-around; /* Arrange items with space between them */
+  justify-content: space-around; 
 }
 
 .left-options,

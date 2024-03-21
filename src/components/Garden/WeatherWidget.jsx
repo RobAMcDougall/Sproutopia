@@ -37,13 +37,10 @@ const WeatherWidget = () => {
           <p>Location: {weatherData.location.name}</p>
           <p>Temperature: {weatherData.current.temp_c}°C</p>
           <p>Condition: {weatherData.current.condition.text}</p>
-          {/* Display weather condition icon */}
           <img src={weatherData.current.condition.icon} alt="Weather Icon" />
-          {/* Check if it's raining and render the message accordingly */}
           {weatherData.current.condition.text.toLowerCase().includes('rain') && (
             <p className="rain-message">Looks like it might be raining where you are. You may not need to water your plants today.</p>
           )}
-          {/* Add more weather information as needed */}
         </div>
       )}
     </div>
