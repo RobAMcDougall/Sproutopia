@@ -10,12 +10,15 @@ export default function RegisterPage() {
 
   const handlePreferenceSelection = selectedPreference => {
     setSelectedPreference(selectedPreference);
+    console.log(selectedPreference)
   };
 
   const [formData, setFormData] = useState({
     username: "",
     email: "",
-    preferences: [],
+    preferences: {
+      allergies: [] // Initialize allergies array
+    },
     password: "",
   });
 
@@ -36,12 +39,12 @@ export default function RegisterPage() {
   const handleRegister = async e => {
     e.preventDefault();
     try {
-      const preferences = selectedPreference.map(pref => pref);
-      console.log(preferences);
+      const allergies = selectedPreference.map(pref => pref.value); // Extract values from selected preferences
       setFormData(prevState => ({
         ...prevState,
-        preferences: preferences,
+        preferences: { allergies }, // Set preferences as an object with allergies key
       }));
+      console.log(formData)
       const options = {
         method: "POST",
         headers: {
@@ -54,6 +57,7 @@ export default function RegisterPage() {
         "https://sproutopia-backend.onrender.com/account/register",
         options
       );
+
       if (!response.ok) {
         setErrorMessage("An account already exists with this email.");
         setTimeout(() => {
@@ -61,6 +65,8 @@ export default function RegisterPage() {
         }, 5000);
         return;
       }
+      const responseData = await response.json();
+      console.log(responseData);
       navigate("/login");
     } catch (error) {
     }

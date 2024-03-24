@@ -10,7 +10,6 @@ const AddPlantForm = ({ visible, onAddPlant, onCancel }) => {
     { id: 2, plant_id: 1, name: 'Tomato2', iconUrl: 'https://i.ibb.co/3BbZpgb/tomato.png' },
     { id: 3, plant_id: 2, name: 'Carrot', iconUrl: 'https://i.ibb.co/mqrPkQb/carrot.png' },
     { id: 4, plant_id: 3, name: 'Spring Onion', iconUrl: 'https://i.ibb.co/PZb5WHC/springonion.png' },
-    // Add more plant options as needed
   ];
 
   const optionsRef = useRef(null);

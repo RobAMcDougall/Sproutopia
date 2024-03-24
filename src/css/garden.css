@@ -53,13 +53,13 @@
     right: 20px;
   }
 
-
-.weather-widget {
+  .weather-widget {
     position: absolute;
-    top: 60px; 
-    left: 20px; 
-}
+    top: 150px; 
+    left: 20px;
+  }
 
+  
   
 .vegetable-overlay {
   position: absolute;
@@ -191,48 +191,12 @@
     background-color: #f0f0f0;
   }
   
-
-  /* .pot-choices {
-    position: absolute;
-    transform: translate(120%, -100%);
-    z-index: 1;
-  }
-
-.water-choice,
-.edit-choice,
-.info-choice,
-.delete-choice {
-  margin: 5px; 
-  text-align: center;
-  padding: 10px 15px; 
-  cursor: pointer;
-  background-color: #2D5039; 
-  color: #ffffff;
-  border: none;
-  border-radius: 50px;
-  transition: background-color 0.3s, transform 0.3s; 
-}
-
-.water-choice:hover,
-.edit-choice:hover,
-.info-choice:hover,
-.delete-choice:hover {
-  background-color: #347d5b; 
-}
-
-.water-choice:active,
-.edit-choice:active,
-.info-choice:active,
-.delete-choice:active {
-  transform: translateY(2px); 
-} */
-
 .pot-choices {
   position: absolute;
   transform: translate(-21%, -160%);
   z-index: 1;
   display: flex;
-  justify-content: space-around; /* Arrange items with space between them */
+  justify-content: space-around; 
 }
 
 .left-options,
@@ -302,4 +266,32 @@
 
 .confirmation-modal button:hover {
   background-color: #347d5b;
+}
+
+
+.watering-can-animation {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(-20%, -50%);
+}
+
+.watering-can {
+  width: 150px; 
+  height: 150px; 
+  background-image: url('https://i.ibb.co/rfPHJRY/watercan.png'); 
+  background-size: cover;
+  animation: wateringCan 1s linear forwards; 
+}
+
+@keyframes wateringCan {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(20deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
 }
