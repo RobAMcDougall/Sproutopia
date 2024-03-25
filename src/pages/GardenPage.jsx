@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AddPlantForm from '../components/Garden/AddPlantForm';
+import AddPlantForm from '../components/Garden/AddPlantForm/AddPlantForm';
 import '../css/garden.css';
 import grassImage from '../assets/grass.svg';
 import skyImage from '../assets/sky.svg';
 import potImage from '../assets/pot.svg';
-import ToDoList from '../components/Garden/ToDoList';
-import WeatherWidget from '../components/Garden/WeatherWidget';
+import ToDoList from '../components/Garden/ToDoList/ToDoList';
+import WeatherWidget from '../components/Garden/WeatherWidget/WeatherWidget';
 
 const GardenPage = () => {
   const [pots, setPots] = useState(Array(8).fill(null));
@@ -135,11 +135,9 @@ const GardenPage = () => {
         const response = await fetch(`http://localhost:3000/plants/user/2/${plant.id}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'text/plain' 
             },
-            body: JSON.stringify({
-                'date_planted': date 
-            })
+            body: date 
         });
         if (!response.ok) {
             throw new Error('Failed to add plant');
@@ -154,6 +152,7 @@ const GardenPage = () => {
         console.error('Error adding plant:', error);
     }
 };
+
 
   
 

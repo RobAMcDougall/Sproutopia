@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "./GrowthCalendar.css";
+import "./../GrowthCalendar.css";
 
 function GrowthCalendarHarvest() {
   const { id } = useParams();
