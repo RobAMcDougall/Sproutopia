@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import GrowthCalendarIndoors from "../../components/PlantInfo/GrowthCalendarIndoors/GrowthCalendarIndoors";
 import GrowthCalendarOutdoors from "../../components/PlantInfo/GrowthCalendarOutdoors/GrowthCalendarOutdoors";
 import GrowthCalendarHarvest from "../../components/PlantInfo/GrowthCalendarHarvest/GrowthCalendarHarvest";
-
 import "./index.css";
 const PlantInfoPage = () => {
   const { id } = useParams();

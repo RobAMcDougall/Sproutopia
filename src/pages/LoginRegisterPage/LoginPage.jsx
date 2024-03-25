@@ -1,11 +1,74 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 import "./LoginRegister.css";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
 
-  
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleInputChange = e => {
+    const { username, value } = e.target;
+    setFormData({
+      ...formData,
+      [username]: value,
+    });
+  };
+
+  const handleLogin = async e => {
+    e.preventDefault();
+    try {
+      const tokenResponse = await fetch(
+        "https://sproutopia-backend.onrender.com/account/login",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      if (!tokenResponse.ok) {
+        setErrorMessage("Incorrect username or password.");
+        setTimeout(() => {
+          setErrorMessage("");
+        }, 5000);
+        return;
+      }
+
+      const tokenData = await tokenResponse.json();
+      const userInfoResponse = await fetch(
+        `https://sproutopia-backend.onrender.com/account/`,
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            authorization: tokenData.token,
+          },
+        }
+      );
+      const userInfoData = await userInfoResponse.json();
+      const userInfo = {
+        token: tokenData.token,
+        userid: userInfoData.id,
+        username: userInfoData.username,
+      };
+      await login(userInfo);
+      navigate("/");
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
     <div className="login-register-page">
       <img
@@ -20,13 +83,14 @@ const LoginPage = () => {
       />
       <h1>Existing User?</h1>
       <h2>Login to your account</h2>
-      <form className="login-register">
+      <form className="login-register" onSubmit={handleLogin}>
         <p className="form-label">Username or email address</p>
         <input
           type="text"
           id="email"
-          name="email"
+          name="username"
           placeholder="Enter your username or email address"
+          onChange={handleInputChange}
           required
         />
         <p className="form-label">Password</p>
@@ -35,6 +99,7 @@ const LoginPage = () => {
           id="password"
           name="password"
           placeholder="Enter your password"
+          onChange={handleInputChange}
           required
         />
         <div className="button-wrap">
@@ -44,6 +109,7 @@ const LoginPage = () => {
           Don't have an account? Signup <Link to="/register">here</Link>
         </p>
       </form>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
       <img
         className="bumblebee bumblebee2"
         src="src/assets/bumblebee2.png"
