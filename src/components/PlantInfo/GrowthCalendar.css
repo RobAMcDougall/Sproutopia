@@ -1,0 +1,29 @@
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 10px;
+}
+
+.calendar-month {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.indoor-sowing-month {
+  background-color: #b7e1cd;
+  border: 2px solid #2d5039;
+  color: #2d5039;
+}
+
+.outdoor-sowing-month {
+  background-color: #b7e1cd;
+  border: 2px solid #2d5039;
+  color: #2d5039;
+}
+
+.harvest-month {
+  background-color: #b7e1cd;
+  border: 2px solid #2d5039;
+  color: #2d5039;
+}

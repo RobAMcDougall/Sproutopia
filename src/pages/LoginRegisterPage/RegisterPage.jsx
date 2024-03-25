@@ -6,10 +6,10 @@ import "./LoginRegister.css";
 export default function RegisterPage() {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
-  const [selectedPreference, setSelectedPreference] = useState([]);
+  const [selectedPreferences, setSelectedPreferences] = useState([]);
 
-  const handlePreferenceSelection = selectedPreference => {
-    setSelectedPreference(selectedPreference);
+  const handlePreferenceSelection = selectedPreferences => {
+    setSelectedPreferences(selectedPreferences);
   };
 
   const [formData, setFormData] = useState({
@@ -36,33 +36,40 @@ export default function RegisterPage() {
   const handleRegister = async e => {
     e.preventDefault();
     try {
-      const preferences = selectedPreference.map(pref => pref);
-      console.log(preferences);
-      setFormData(prevState => ({
-        ...prevState,
-        preferences: preferences,
-      }));
+      const allergies = selectedPreferences.map(pref => pref.value);
+      const updatedFormData = { ...formData, preferences: { allergies } }; // Wrap allergies in an object
+      setFormData(updatedFormData);
+  
       const options = {
         method: "POST",
         headers: {
-          Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(updatedFormData),
       };
+  
+      console.log("Sending request with data:", updatedFormData);
+  
       const response = await fetch(
         "https://sproutopia-backend.onrender.com/account/register",
         options
       );
+  
+      console.log("Response status:", response.status);
+  
       if (!response.ok) {
-        setErrorMessage("An account already exists with this email.");
-        setTimeout(() => {
-          setErrorMessage("");
-        }, 5000);
+        const errorData = await response.json();
+        console.error("Error response from server:", errorData);
+        setErrorMessage("An error occurred during registration.");
         return;
       }
+  
+      const responseData = await response.json();
+      console.log("Response data:", responseData);
       navigate("/login");
     } catch (error) {
+      console.error("Error during registration:", error);
+      setErrorMessage("An error occurred during registration.");
     }
   };
 
@@ -104,7 +111,7 @@ export default function RegisterPage() {
           className="food-preference-form"
           name="preference"
           options={foodPreferences}
-          value={selectedPreference}
+          value={selectedPreferences}
           onChange={handlePreferenceSelection}
           isMulti={true}
           placeholder="Select your preferences"

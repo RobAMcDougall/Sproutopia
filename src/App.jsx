@@ -6,6 +6,7 @@ import GardenPage from "./pages/GardenPage";
 import KitchenPage from "./pages/KitchenPage";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import LoginPage from "./pages/LoginRegisterPage/LoginPage";
+import RegisterPage from "./pages/LoginRegisterPage/RegisterPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import PlantInfoPage from "./pages/PlantInfoPage/PlantInfoPage";
 import SearchPage from "./pages/SearchPage";
@@ -19,6 +20,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/garden" element={<GardenPage />} />
         <Route path="/plant/:id" element={<PlantInfoPage />} />

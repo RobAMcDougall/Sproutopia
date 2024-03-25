@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import GrowthCalendarIndoors from "../../components/PlantInfo/GrowthCalendarIndoors";
+import GrowthCalendarOutdoors from "../../components/PlantInfo/GrowthCalendarOutdoors";
+import GrowthCalendarHarvest from "../../components/PlantInfo/GrowthCalendarHarvest";
+
 import "./index.css";
 const PlantInfoPage = () => {
   const { id } = useParams();
@@ -12,7 +16,6 @@ const PlantInfoPage = () => {
       );
       const rawData = await response.json();
       setPlant(rawData);
-      console.log(rawData);
     }
 
     displayPlant();
@@ -45,8 +48,18 @@ const PlantInfoPage = () => {
         </div>
         <div className="info-label">Storage:</div>
         <div className="info-value">{plant.storage}</div>
-        <div className="info-label">Growth calendar:</div>
-        <div className="info-value">Growth calendar</div>
+        <div className="info-label">Sow Indoors:</div>
+        <div className="info-value">
+          <GrowthCalendarIndoors />
+        </div>
+        <div className="info-label">Sow Outdoors:</div>
+        <div className="info-value">
+          <GrowthCalendarOutdoors />
+          </div>
+          <div className="info-label">Harvest:</div>
+          <div className="info-value">
+          <GrowthCalendarHarvest />
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,16 @@
 header {
-    display: block;
+    position: fixed;
+}
+
+.hero {
+    margin-top: 8%;
+}
+
+.hero1 {
+}
+
+.mascot-container {
+    align-items: left;
 }
 
 .hero2 {

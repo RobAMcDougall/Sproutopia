@@ -1,6 +1,7 @@
 import React from "react";
 import skyImage from "../../assets/sky.svg";
 import grassImage from "../../assets/grass.svg";
+import Mascot from "../../components/Mascot/Mascot";
 import "./LandingPage.css";
 
 const LandingPage = () => {
@@ -100,6 +101,9 @@ const LandingPage = () => {
             </p>
           </div>
         </div>
+      </div>
+      <div className="mascot-container">
+        <Mascot />
       </div>
       <footer>
         <img src={grassImage} alt="Grass" className="grass" />
