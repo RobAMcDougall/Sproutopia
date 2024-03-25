@@ -56,9 +56,9 @@ const getAllPlants = async () => {
     return results.rows;
 }
 
-const addPlantForUser = async (user, plant) => {
+const addPlantForUser = async (user, plant, date) => {
     // Format today's date for SQL query
-    const date = (new Date()).toISOString().split("T")[0];
+    if (!date) date = (new Date()).toISOString().split("T")[0];
     
     const response = await db.query(
         `INSERT INTO planted_veg ("user", plant_id, growth_stage, date_planted)
