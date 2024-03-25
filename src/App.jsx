@@ -5,13 +5,13 @@ import CalendarPage from './pages/CalendarPage'
 import GardenPage from './pages/GardenPage'
 import KitchenPage from './pages/KitchenPage'
 import LandingPage from './pages/LandingPage'
-import LoginPage from './pages/LoginPage'
 import NotFoundPage from './pages/NotFoundPage'
 import PlantInfoPage from './pages/PlantInfoPage/PlantInfoPage'
 import SearchPage from './pages/SearchPage'
 import RecipeListPage from './pages/RecipeListPage'
 import RecipePage from './pages/RecipePage'
 import SideNav from './components/Kitchen/SideNav'
+import LoginPage from "./pages/LoginRegisterPage/LoginPage"
 
 const App = () => {
   return (
