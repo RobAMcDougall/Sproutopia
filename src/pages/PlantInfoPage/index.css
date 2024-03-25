@@ -14,6 +14,7 @@
   font-weight: 500;
   font-size: 16px;
   align-self: end;
+  color: #2d5039;
 }
 
 .latin-name {
@@ -21,6 +22,7 @@
   grid-row: 2 / 3;
   font-style: italic;
   align-self: start;
+  color: #2d5039;
 }
 
 .plant-image {
@@ -47,6 +49,7 @@
   margin-bottom: 20px;
   font-weight: 300;
   font-size: 16px;
+  color: #2d5039;
 }
 
 .info-container {
@@ -60,9 +63,11 @@
 .info-label {
   font-weight: bold;
   font-size: 16px;
+  color: #2d5039;
 }
 
 .info-value {
   font-weight: 400;
   font-size: 16px;
+  color: #2d5039;
 }

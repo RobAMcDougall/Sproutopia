@@ -23,23 +23,16 @@ function GrowthCalendarHarvest() {
     return date.toLocaleString("default", { month: "short" });
   };
 
-  // const isHarvestMonth = dateString => {
-  //   const date = new Date(dateString);
-  //   const harvestStart = new Date(plant.harvest_start);
-  //   const harvestEnd = new Date(plant.harvest_end);
-
-  //   return date >= harvestStart && date <= harvestEnd;
-  // };
 
   const isHarvestMonth = dateString => {
     const date = new Date(dateString);
     const harvestStart = new Date(plant.harvest_start);
     const harvestEnd = new Date(plant.harvest_end);
 
-    // Check if the given month is within the harvesting window, one month before, or the start month
+   
     return (
       (date >=
-        new Date(harvestStart.getFullYear(), harvestStart.getMonth() - 1, 1) &&
+        new Date(harvestStart.getFullYear(), harvestStart.getMonth(), 1) &&
         date <= harvestEnd) ||
       (date.getMonth() === harvestStart.getMonth() &&
         date.getFullYear() === harvestStart.getFullYear())
