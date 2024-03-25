@@ -60,7 +60,7 @@ const LoginPage = () => {
       const userInfo = {
         token: tokenData.token,
         userid: userInfoData.id,
-        name: userInfoData.name,
+        username: userInfoData.username,
       };
       await login(userInfo);
       navigate("/");
@@ -88,7 +88,7 @@ const LoginPage = () => {
         <input
           type="text"
           id="email"
-          name="email"
+          name="username"
           placeholder="Enter your username or email address"
           onChange={handleInputChange}
           required

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../css/weather.css'; 
+import '../../../css/weather.css'; 
 
 const WeatherWidget = () => {
   const [postcode, setPostcode] = useState('');
