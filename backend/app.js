@@ -3,7 +3,7 @@ const app = new Koa();
 
 const cors = require("@koa/cors");
 const {bodyParser} = require("@koa/bodyparser");
-app.use(cors()).use(bodyParser());
+app.use(cors()).use(bodyParser({enableTypes: ['json', 'text', 'form']}));
 
 const Router = require("@koa/router");
 const controllers = require("./controller");
