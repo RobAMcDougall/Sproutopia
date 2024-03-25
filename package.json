@@ -47,7 +47,6 @@
     "jsdom": "^24.0.0",
     "nodemon": "^3.1.0",
     "postcss": "^8.4.36",
-    "react-error-overlay": "^6.0.9",
     "supertest": "^6.3.4",
     "tailwindcss": "^3.4.1",
     "vite": "^5.1.6",
