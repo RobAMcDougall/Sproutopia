@@ -26,14 +26,13 @@ const getAccount = async (data) => {
     }
 }
 
-const updatePreferences = async (data) => {
-    const {id, preferences} = data
+const updatePreferences = async (preferences, token) => {
     const response = await db.query(
         `UPDATE "user"
         SET preferences = $2
-        WHERE id = $1
+        WHERE id = (SELECT "user" FROM auth_session WHERE token = $1)
         RETURNING *`,
-        [id, preferences]
+        [token, preferences]
     );
     return response.rows[0];
 }

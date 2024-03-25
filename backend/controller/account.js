@@ -40,21 +40,10 @@ const login = async (ctx) => {
 const updatePreferences = async (ctx) => {
     try{
         const preferences = ctx.request.body
-        const id = ctx.params.id
-
-        const data = {id, preferences}
-        
-        // You should still be able to pass empty preferences object
-        if (!data.id ){
-            throw new Error("No id was passed")
-        } else {
-            ctx.body = await Account.updatePreferences(data)
-        }
-    } catch (err) {
-        ctx.status = 400
-        ctx.body ={
-            message: err.message
-        }
+        const token = ctx.request.get("Authorization");
+        ctx.body = await Account.updatePreferences(preferences, token);
+    } catch {
+        ctx.status = 403
     }
 }
 

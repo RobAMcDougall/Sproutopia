@@ -135,16 +135,10 @@ describe("updatePreferences", () => {
         expect(ctx.status).toBe(200);
     });
 
-    it("should throw an error if id or preferences are not passed", async () => {
-
-        vi.spyOn(Account, "updatePreferences").mockResolvedValueOnce(undefined);
-
-        ctx.params = {};
+    it("should throw an error if updating preferences for other users", async () => {
+        vi.spyOn(Account, "updatePreferences").mockRejectedValue(new Error("Forbidden"));
         await account.updatePreferences(ctx);
-        expect(ctx.status).toBe(400);
-        expect(ctx.body).toEqual({ message: "No id was passed" });
-        
-        
+        expect(ctx.status).toBe(403);
     });
 
 });

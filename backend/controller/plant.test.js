@@ -3,6 +3,7 @@ import { createMockContext } from "@story-health/vitest-koa-mocks"
 
 const plant = require("./plant")
 const Plant = require("../model/plant")
+const Account = require("../model/account")
 
 describe("getPlantById", () => {
     afterEach(() => {
@@ -178,23 +179,40 @@ describe("incrementGrowthStage", () => {
     });
 
     it("should increment growth stage of a plant", async () => {
-        const ctx = createMockContext();
+        const ctx = createMockContext({
+            headers: {
+                "Authorization": "00000000-0000-0000-0000-000000000000"
+            }
+        });
         ctx.params = { plant: 1 };
-        const fakePlant = { id: 1, name: "Fake Plant", growth_stage: 2 };
+        const fakePlant = { id: 1, user: 1, name: "Fake Plant", growth_stage: 2 };
         vi.spyOn(Plant, "incrementGrowthStage").mockResolvedValueOnce(fakePlant);
+        vi.spyOn(Plant, "getUserPlant").mockResolvedValueOnce(fakePlant);
+        vi.spyOn(Account, "getFromSession").mockResolvedValueOnce({id: 1});
 
         await plant.incrementGrowthStage(ctx);
-
         expect(ctx.status).toBe(200);
         expect(ctx.body).toEqual(fakePlant);
     });
 
-    it("should handle error if plant not found", async () => {
-        const ctx = createMockContext();
-        vi.spyOn(Plant, "incrementGrowthStage").mockResolvedValueOnce(undefined);
+    it("should handle error if plant does not belong to user", async () => {
+        const ctx = createMockContext({
+            headers: {
+                "Authorization": "00000000-0000-0000-0000-000000000000"
+            }
+        });
+        ctx.params = { plant: 1 };
+        const fakePlant = { id: 1, user: 1, name: "Fake Plant", growth_stage: 2 };
+        vi.spyOn(Plant, "getUserPlant").mockResolvedValueOnce(fakePlant);
+        vi.spyOn(Account, "getFromSession").mockResolvedValueOnce({id: 2});
 
         await plant.incrementGrowthStage(ctx);
+        expect(ctx.status).toBe(403);
+    });
 
+    it("should handle error if plant not found", async () => {
+        const ctx = createMockContext();
+        await plant.incrementGrowthStage(ctx);
         expect(ctx.status).toBe(404);
     });
 });
@@ -208,6 +226,8 @@ describe("deletePlant", () => {
         const ctx = createMockContext();
         ctx.params = { plant: 1 };
         vi.spyOn(Plant, "deletePlant").mockResolvedValueOnce(undefined);
+        vi.spyOn(Plant, "getUserPlant").mockResolvedValueOnce({id: 1, user: 1});
+        vi.spyOn(Account, "getFromSession").mockResolvedValueOnce({id: 1});
 
         await plant.deletePlant(ctx);
 
