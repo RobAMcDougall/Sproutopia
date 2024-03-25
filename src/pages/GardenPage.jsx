@@ -135,11 +135,9 @@ const GardenPage = () => {
         const response = await fetch(`http://localhost:3000/plants/user/2/${plant.id}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'text/plain' 
             },
-            body: JSON.stringify({
-                'date_planted': date 
-            })
+            body: date 
         });
         if (!response.ok) {
             throw new Error('Failed to add plant');
@@ -154,6 +152,7 @@ const GardenPage = () => {
         console.error('Error adding plant:', error);
     }
 };
+
 
   
 
