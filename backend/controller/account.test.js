@@ -198,4 +198,38 @@ describe("protect", () => {
         expect(ctx.status).toBe(403)
         expect(ctx.body).toStrictEqual({error: "Denied"})
     })
+})
+
+
+
+describe("getFromSession", () => {
+    let ctx;
+
+    beforeEach(() => {
+        vi.clearAllMocks();
+        ctx = createMockContext({
+            request: { get: () => "00000000-0000-0000-0000-000000000000" },
+            headers: { "Content-Type": "application/json" }
+        });
+    });
+
+    afterAll(() => {
+        vi.resetAllMocks();
+    });
+
+    it("should get user data from session", async () => {
+        vi.spyOn(Account, "getFromSession").mockResolvedValueOnce({});
+        await accounts.getFromSession(ctx);
+        expect(Account.getFromSession).toHaveBeenCalledTimes(1);
+        expect(ctx.status).toBe(200);
+        expect(ctx.body).toEqual({});
+    });
+
+    it("should handle error if session token is invalid", async () => {
+        vi.spyOn(Account, "getFromSession").mockRejectedValueOnce(new Error("Invalid session"));
+        await accounts.getFromSession(ctx);
+        expect(Account.getFromSession).toHaveBeenCalledTimes(1);
+        expect(ctx.status).toBe(404);
+        expect(ctx.body).toEqual({ error: "Invalid session" });
+    });
 });
