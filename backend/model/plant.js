@@ -12,6 +12,18 @@ const getPlantById = async (id) => {
     }
 }
 
+const getUserPlant = async (id) => {
+    try {
+        const result = await db.query(
+            "SELECT * FROM planted_veg WHERE id = $1",
+            [id]
+        );
+        return result.rows[0];
+    } catch {
+        throw new Error("User plant not found");
+    }
+}
+
 const getPlantsByUser = async (userId) => {
     try {
         const results = await db.query(
@@ -44,9 +56,9 @@ const getAllPlants = async () => {
     return results.rows;
 }
 
-const addPlantForUser = async (user, plant) => {
+const addPlantForUser = async (user, plant, date) => {
     // Format today's date for SQL query
-    const date = (new Date()).toISOString().split("T")[0];
+    if (!date) date = (new Date()).toISOString().split("T")[0];
     
     const response = await db.query(
         `INSERT INTO planted_veg ("user", plant_id, growth_stage, date_planted)
@@ -76,6 +88,7 @@ const deletePlant = async plant => {
 
 module.exports = {
     getPlantById,
+    getUserPlant,
     getPlantsByUser,
     getPlantDetailsByUser,
     getAllPlants,

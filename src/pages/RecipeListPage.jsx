@@ -1,16 +1,16 @@
-import React from 'react'
-import SideNav from '../components/Kitchen/SideNav'
-import RecipeList from '../components/Kitchen/RecipeList'
+import React from "react";
+import SideNav from "../components/Kitchen/SideNav/SideNav";
+import RecipeList from "../components/Kitchen/RecipeList/RecipeList";
 
 const RecipeListPage = () => {
   return (
     <div>
-      <div className='ml-96 mt-20 mr-24'>
-        <h1 className='font-semibold text-2xl mb-5'>Recipes</h1>
+      <div className="ml-96 mt-20 mr-24">
+        <h1 className="font-semibold text-2xl mb-5">Recipes</h1>
         <RecipeList />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RecipeListPage
+export default RecipeListPage;
