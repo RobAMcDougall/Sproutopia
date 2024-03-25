@@ -12,7 +12,7 @@ const RecipeListPage = () => {
         <RecipeList />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RecipeListPage
+export default RecipeListPage;

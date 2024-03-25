@@ -37,6 +37,16 @@ const login = async (ctx) => {
     }
 }
 
+const updatePreferences = async (ctx) => {
+    try{
+        const preferences = ctx.request.body
+        const token = ctx.request.get("Authorization");
+        ctx.body = await Account.updatePreferences(preferences, token);
+    } catch {
+        ctx.status = 403
+    }
+}
+
 const getFromSession = async ctx => {
     try {
         ctx.body = await Account.getFromSession(ctx.request.get("Authorization"));
@@ -74,6 +84,7 @@ const protect = async (ctx, next) => {
 module.exports = {
     register,
     login,
+    updatePreferences,
     getFromSession,
     logout,
     protect

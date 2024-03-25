@@ -5,28 +5,25 @@ const AddPlantForm = ({ visible, onAddPlant, onCancel }) => {
   const [selectedDate, setSelectedDate] = useState('');
   const [filteredOptions, setFilteredOptions] = useState([]);
   const [showOptions, setShowOptions] = useState(false);
-  const plantOptions = [
-    { id: 1, plant_id: 1, name: 'Tomato1', iconUrl: 'https://i.ibb.co/3BbZpgb/tomato.png' },
-    { id: 2, plant_id: 1, name: 'Tomato2', iconUrl: 'https://i.ibb.co/3BbZpgb/tomato.png' },
-    { id: 3, plant_id: 2, name: 'Carrot', iconUrl: 'https://i.ibb.co/mqrPkQb/carrot.png' },
-    { id: 4, plant_id: 3, name: 'Spring Onion', iconUrl: 'https://i.ibb.co/PZb5WHC/springonion.png' },
-    // Add more plant options as needed
-  ];
-
+  const [plantOptions, setPlantOptions] = useState([]);
   const optionsRef = useRef(null);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (optionsRef.current && !optionsRef.current.contains(event.target)) {
-        setShowOptions(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+    fetchPlants();
   }, []);
+
+  const fetchPlants = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/plants/all');
+      if (!response.ok) {
+        throw new Error('Failed to fetch plants');
+      }
+      const plants = await response.json();
+      setPlantOptions(plants);
+    } catch (error) {
+      console.error('Error fetching plants:', error);
+    }
+  };
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -40,7 +37,8 @@ const AddPlantForm = ({ visible, onAddPlant, onCancel }) => {
   };
 
   const handleDateChange = (e) => {
-    setSelectedDate(e.target.value);
+    const date = e.target.value;
+    setSelectedDate(date);
   };
 
   const handleOptionClick = (option) => {
@@ -48,14 +46,18 @@ const AddPlantForm = ({ visible, onAddPlant, onCancel }) => {
     setShowOptions(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const selectedPlant = filteredOptions.find(option => option.name.toLowerCase() === inputValue.toLowerCase());
     if (selectedPlant) {
-      onAddPlant({ ...selectedPlant, plantedDate: selectedDate });
-      setInputValue('');
-      setSelectedDate('');
-      setFilteredOptions([]);
+      try {
+        await onAddPlant(selectedPlant, selectedDate);
+        setInputValue('');
+        setSelectedDate('');
+        setFilteredOptions([]);
+      } catch (error) {
+        console.error('Error adding plant:', error);
+      }
     }
   };
 

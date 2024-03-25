@@ -1,8 +1,12 @@
 import React from 'react'
+import Mascot from '../components/Mascot/Mascot'
 
 const LandingPage = () => {
   return (
-    <div>LandingPage</div>
+    <>
+    <div>Landing page</div>
+    <Mascot/>
+    </>
   )
 }
 

@@ -1,13 +1,13 @@
-import React from 'react'
-import SideNav from '../components/Kitchen/SideNav'
-import Welcome from '../components/Kitchen/Welcome'
-import WelcomeBackground from "../assets/welcome-background.png"
+import React from "react";
+import SideNav from "../components/Kitchen/SideNav/SideNav";
+import Welcome from "../components/Kitchen/Welcome/Welcome";
+import WelcomeBackground from "../assets/welcome-background.png";
 const KitchenPage = () => {
   return (
-    <div className='kitchen'>
+    <div className="kitchen">
       <Welcome />
-    </div>  
-  )
-}
+    </div>
+  );
+};
 
-export default KitchenPage  
+export default KitchenPage;

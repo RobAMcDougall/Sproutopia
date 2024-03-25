@@ -2,6 +2,7 @@
 
 import { createMockContext } from "@story-health/vitest-koa-mocks"
 import { afterAll, describe, expect } from "vitest"
+import {account} from "./index";
 
 const bcrypt = require("bcryptjs")
 const accounts = require("./account")
@@ -97,6 +98,51 @@ describe("login", () => {
     })
 })
 
+describe("updatePreferences", () => {
+    const testPreferences = {
+        allergies: ["peanuts"],
+        favourites: ["cheese"]
+    };
+    
+    let ctx;
+
+    beforeEach(() => {
+        vi.clearAllMocks();
+        ctx = createMockContext({
+            requestBody: testPreferences,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        ctx.params = { id: 1 };
+    });
+
+    afterEach(() => {
+        vi.resetAllMocks();
+    });
+
+    it("should successfully update a user's preferences", async () => {
+        const testAccount = {
+            id: 1,
+            username: "test",
+            password: "test",
+            email: "test@test.com",
+            preferences: testPreferences
+        };
+        
+        vi.spyOn(Account, "updatePreferences").mockResolvedValueOnce(testAccount);
+        await account.updatePreferences(ctx);
+        expect(ctx.status).toBe(200);
+    });
+
+    it("should throw an error if updating preferences for other users", async () => {
+        vi.spyOn(Account, "updatePreferences").mockRejectedValue(new Error("Forbidden"));
+        await account.updatePreferences(ctx);
+        expect(ctx.status).toBe(403);
+    });
+
+});
+
 describe("logout", () => {
     let ctx;
 
@@ -155,3 +201,35 @@ describe("protect", () => {
 })
 
 
+
+describe("getFromSession", () => {
+    let ctx;
+
+    beforeEach(() => {
+        vi.clearAllMocks();
+        ctx = createMockContext({
+            request: { get: () => "00000000-0000-0000-0000-000000000000" },
+            headers: { "Content-Type": "application/json" }
+        });
+    });
+
+    afterAll(() => {
+        vi.resetAllMocks();
+    });
+
+    it("should get user data from session", async () => {
+        vi.spyOn(Account, "getFromSession").mockResolvedValueOnce({});
+        await accounts.getFromSession(ctx);
+        expect(Account.getFromSession).toHaveBeenCalledTimes(1);
+        expect(ctx.status).toBe(200);
+        expect(ctx.body).toEqual({});
+    });
+
+    it("should handle error if session token is invalid", async () => {
+        vi.spyOn(Account, "getFromSession").mockRejectedValueOnce(new Error("Invalid session"));
+        await accounts.getFromSession(ctx);
+        expect(Account.getFromSession).toHaveBeenCalledTimes(1);
+        expect(ctx.status).toBe(404);
+        expect(ctx.body).toEqual({ error: "Invalid session" });
+    });
+});

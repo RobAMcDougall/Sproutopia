@@ -35,7 +35,8 @@ CREATE TABLE "all_plants"(
     "germination_max" INTEGER NOT NULL,
     "storage" TEXT NOT NULL,
     "sow_and_plant_info" TEXT NOT NULL,
-    "image_url" TEXT NOT NULL
+    "image_url" TEXT NOT NULL,
+    "icon_url" TEXT NOT NULL
 );
 
 CREATE TABLE "planted_veg"(
@@ -52,10 +53,10 @@ VALUES
     ('jane_smith', 'hashed_password_456', 'jane@example.com'),
     ('bob_jackson', 'hashed_password_789', 'bob@example.com');
 
-INSERT INTO all_plants ("name", "latin_name", "description", "season", "soil", "watering_freq", "harvesting", "sow_indoors_start", "sow_indoors_end", "sow_outdoors_start", "sow_outdoors_end", "harvest_start", "harvest_end", "germination_min", "germination_max", "storage", "sow_and_plant_info", "image_url")
+INSERT INTO all_plants ("name", "latin_name", "description", "season", "soil", "watering_freq", "harvesting", "sow_indoors_start", "sow_indoors_end", "sow_outdoors_start", "sow_outdoors_end", "harvest_start", "harvest_end", "germination_min", "germination_max", "storage", "sow_and_plant_info", "image_url", "icon_url")
 VALUES 
-    ('Tomato', 'Solanum lycopersicum', 'Tomatoes are the edible berry of the plant Solanum lycopersicum, commonly known as a tomato plant.', 'Summer', 'Well-drained, fertile soil', 2, 'Harvest when the fruits are ripe.', '2024-03-01', '2024-04-15', '2024-04-15', '2024-05-15', '2024-06-15', '2024-09-15', 7, 14, 'Store in a cool, dry place.', 'Sow indoors in pots or trays.', 'https://example.com/tomato.jpg'),
-    ('Lettuce', 'Lactuca sativa', 'Lettuce is a leafy vegetable that is often used in salads.', 'Spring, Fall', 'Well-drained, loamy soil', 1, 'Harvest the outer leaves as needed.', '2024-02-15', '2024-03-15', '2024-03-15', '2024-04-15', '2024-04-15', '2024-05-30', 7, 10, 'Store in the refrigerator.', 'Sow directly into the garden bed.', 'https://example.com/lettuce.jpg');
+    ('Tomato', 'Solanum lycopersicum', 'Tomatoes are the edible berry of the plant Solanum lycopersicum, commonly known as a tomato plant.', 'Summer', 'Well-drained, fertile soil', 2, 'Harvest when the fruits are ripe.', '2024-03-01', '2024-04-15', '2024-04-15', '2024-05-15', '2024-06-15', '2024-09-15', 7, 14, 'Store in a cool, dry place.', 'Sow indoors in pots or trays.', 'https://example.com/tomato.jpg', 'https://i.ibb.co/3BbZpgb/tomato.png'),
+    ('Lettuce', 'Lactuca sativa', 'Lettuce is a leafy vegetable that is often used in salads.', 'Spring, Fall', 'Well-drained, loamy soil', 1, 'Harvest the outer leaves as needed.', '2024-02-15', '2024-03-15', '2024-03-15', '2024-04-15', '2024-04-15', '2024-05-30', 7, 10, 'Store in the refrigerator.', 'Sow directly into the garden bed.', 'https://example.com/lettuce.jpg', 'https://example.com/lettuce.jpg');
 
 
 INSERT INTO planted_veg ("user", "plant_id", "growth_stage", "date_planted")
