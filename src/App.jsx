@@ -12,7 +12,7 @@ import PlantInfoPage from "./pages/PlantInfoPage/PlantInfoPage";
 import SearchPage from "./pages/SearchPage";
 import RecipeListPage from "./pages/RecipeListPage";
 import RecipePage from "./pages/RecipePage";
-import SideNav from "./components/Kitchen/SideNav";
+import SideNav from "./components/Kitchen/SideNav/SideNav";
 
 const App = () => {
   return (

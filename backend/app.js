@@ -3,7 +3,7 @@ const app = new Koa();
 
 const cors = require("@koa/cors");
 const {bodyParser} = require("@koa/bodyparser");
-app.use(cors()).use(bodyParser());
+app.use(cors()).use(bodyParser({enableTypes: ['json', 'text', 'form']}));
 
 const Router = require("@koa/router");
 const controllers = require("./controller");
@@ -11,7 +11,7 @@ const controllers = require("./controller");
 const accounts = new Router({prefix: "/account"});
 accounts.post("/register", controllers.account.register);
 accounts.post("/login", controllers.account.login);
-accounts.patch("/preferences/:id", controllers.account.updatePreferences, controllers.account.protect);
+accounts.patch("/preferences", controllers.account.updatePreferences, controllers.account.protect);
 accounts.delete("/logout", controllers.account.logout);
 accounts.get("/", controllers.account.getFromSession);
 app.use(accounts.routes()).use(accounts.allowedMethods());
