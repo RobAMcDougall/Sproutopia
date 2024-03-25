@@ -1,6 +1,6 @@
 import React from "react";
 import SideNav from "../components/Kitchen/SideNav/SideNav";
-import Welcome from "../components/Kitchen/Welcome";
+import Welcome from "../components/Kitchen/Welcome/Welcome";
 import WelcomeBackground from "../assets/welcome-background.png";
 const KitchenPage = () => {
   return (
