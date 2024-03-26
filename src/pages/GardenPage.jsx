@@ -9,16 +9,13 @@ import ToDoList from '../components/Garden/ToDoList/ToDoList';
 import WeatherWidget from '../components/Garden/WeatherWidget/WeatherWidget';
 import waterAlert from '../assets/water-alert.png'
 
-
 const GardenPage = () => {
   const [pots, setPots] = useState(Array(8).fill(null));
   const [plants, setPlants] = useState([]);
   const [plantedVeg, setPlantedVeg] = useState([]);
   const [selectedPotIndex, setSelectedPotIndex] = useState(null);
   const [isFormVisible, setIsFormVisible] = useState(false);
-  const [potOptionsVisible, setPotOptionsVisible] = useState(
-    Array(8).fill(false)
-  );
+  const [potOptionsVisible, setPotOptionsVisible] = useState(Array(8).fill(false));
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [deletePlantId, setDeletePlantId] = useState(null);
   const [animationCoordinates, setAnimationCoordinates] = useState(null);
@@ -31,7 +28,7 @@ const GardenPage = () => {
   }, []);
 
   useEffect(() => {
-    const handleOutsideClick = event => {
+    const handleOutsideClick = (event) => {
       menuRefs.current.forEach((menuRef, index) => {
         if (menuRef && !menuRef.contains(event.target)) {
           setPotOptionsVisible(prevState => {
@@ -43,14 +40,13 @@ const GardenPage = () => {
       });
     };
 
-    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener('mousedown', handleOutsideClick);
 
     return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, []);
 
-  
   const handleAddPlant = async (plant, date) => {
     try {
         const response = await fetch(`http://localhost:3000/plants/user/2/${plant.id}`, {
@@ -79,17 +75,6 @@ const fetchPlantedVegetables = async () => {
     const response = await fetch('http://localhost:3000/plants/user/2');
     if (!response.ok) {
       throw new Error('Failed to fetch planted vegetables');
-
-  const handlePotClick = index => {
-    setSelectedPotIndex(index);
-    if (!plants[index]) {
-      setIsFormVisible(true);
-    } else {
-      setPotOptionsVisible(prevState => {
-        const newState = [...prevState];
-        newState[index] = true;
-        return newState;
-      });
     }
     const plantedVegetables = await response.json();
     const plantsData = await Promise.all(
@@ -125,7 +110,7 @@ const fetchPlantedVegetables = async () => {
   };
 
   const handleWater = (plantId, index) => {
-    console.log("Plant watered with ID", plantId);
+    console.log('Plant watered with ID', plantId);
     closeMenu();
     const updatedPlants = [...plants];
     updatedPlants[index].needsWatering = false; 
@@ -181,7 +166,6 @@ const fetchPlantedVegetables = async () => {
   };
 
   const handleDelete = (plantId, index) => {
-
     setShowDeleteConfirmation(true);
     setDeletePlantId(plantId);
     setSelectedPotIndex(index);
@@ -189,7 +173,6 @@ const fetchPlantedVegetables = async () => {
   };
   
   const confirmDelete = () => {
-
     const updatedPlants = [...plants];
     updatedPlants[selectedPotIndex] = null; 
   
@@ -215,6 +198,7 @@ const fetchPlantedVegetables = async () => {
     setPotOptionsVisible(Array(8).fill(false));
   };
 
+
   return (
     <div className="garden-page">
       <ToDoList />
@@ -225,14 +209,9 @@ const fetchPlantedVegetables = async () => {
       <div className="plant-pots">
         {pots.map((_, index) => (
           <div key={index} className="plant-pot-container">
-            <div
-              className="plant-pot"
-              id={`pot-${index}`}
-              onClick={() => handlePotClick(index)}
-            >
+            <div className="plant-pot" id={`pot-${index}`} onClick={() => handlePotClick(index)}>
               <img src={potImage} alt="Pot" />
               {plants[index] && (
-
                 <div className="plant-details" id={`plant-details-${index}`}>
                   <img className="vegetable-overlay" src={plants[index].icon_url} alt={plants[index].name} />
                   {plants[index].needsWatering && <img className="alert-icon" src={waterAlert}/>}
@@ -240,15 +219,9 @@ const fetchPlantedVegetables = async () => {
               )}
             </div>
             {potOptionsVisible[index] && (
-              <div
-                ref={el => (menuRefs.current[index] = el)}
-                className="pot-choices"
-              >
+              <div ref={(el) => (menuRefs.current[index] = el)} className="pot-choices">
                 <div className="left-options">
-                  <div
-                    className="water-choice option"
-                    onClick={() => handleWater(plantedVeg[index].id, index)}
-                  >
+                  <div className="water-choice option" onClick={() => handleWater(plantedVeg[index].id, index)}>
                     Water
                   </div>
                   <div className="harvest-choice option" onClick={() => handleHarvest(plantedVeg[index].id, index)}>
@@ -256,16 +229,10 @@ const fetchPlantedVegetables = async () => {
                   </div>
                 </div>
                 <div className="right-options">
-                  <div
-                    className="info-choice option"
-                    onClick={() => handlePlantInfo(plants[index].id)}
-                  >
+                  <div className="info-choice option" onClick={() => handlePlantInfo(plants[index].id)}>
                     Details
                   </div>
-                  <div
-                    className="delete-choice option"
-                    onClick={() => handleDelete(plantedVeg[index].id, index)}
-                  >
+                  <div className="delete-choice option" onClick={() => handleDelete(plantedVeg[index].id, index)}>
                     Remove
                   </div>
                 </div>
@@ -277,11 +244,7 @@ const fetchPlantedVegetables = async () => {
             )}
           </div>
         ))}
-        <AddPlantForm
-          visible={isFormVisible}
-          onAddPlant={handleAddPlant}
-          onCancel={handleCancel}
-        />
+        <AddPlantForm visible={isFormVisible} onAddPlant={handleAddPlant} onCancel={handleCancel} />
       </div>
       <img src={grassImage} alt="Grass" className="grass" />
       {showDeleteConfirmation && (
@@ -298,10 +261,7 @@ const fetchPlantedVegetables = async () => {
 };
 
 const WateringCanAnimation = ({ coordinates }) => (
-  <div
-    className="watering-can-animation"
-    style={{ top: coordinates.top, left: coordinates.left }}
-  >
+  <div className="watering-can-animation" style={{ top: coordinates.top, left: coordinates.left }}>
     <div className="watering-can"></div>
   </div>
 );

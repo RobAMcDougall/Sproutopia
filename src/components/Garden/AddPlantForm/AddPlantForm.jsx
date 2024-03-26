@@ -12,6 +12,20 @@ const AddPlantForm = ({ visible, onAddPlant, onCancel }) => {
     fetchPlants();
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (optionsRef.current && !optionsRef.current.contains(event.target)) {
+        setShowOptions(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   const fetchPlants = async () => {
     try {
       const response = await fetch('http://localhost:3000/plants/all');
