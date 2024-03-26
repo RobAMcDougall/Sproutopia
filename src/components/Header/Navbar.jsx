@@ -1,13 +1,13 @@
 import { NavLink, Outlet } from "react-router-dom";
-// import { useAuth } from "";
+import { useAuth } from "../../hooks/useAuth";
 import "./navbar.css";
 
 function Navbar() {
-  // const { logout } = useAuth;
-  // const handleLogout = () => {
-  //   logout();
-  //   navigate("/");
-  // };
+  const { logout } = useAuth;
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
   return (
     <>
       <div className="navbar">
@@ -26,9 +26,9 @@ function Navbar() {
           <NavLink className="link" to="/kitchen">
             Kitchen
           </NavLink>
-          {/* <NavLink className="link" to="/" onClick={handleLogout}>
+          <NavLink className="link" to="/" onClick={handleLogout}>
             LogOut
-          </NavLink> */}
+          </NavLink>
         </nav>
       </div>
       <Outlet />

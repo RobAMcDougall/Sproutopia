@@ -1,17 +1,11 @@
 import React from "react";
 import skyImage from "../../assets/sky.svg";
 import grassImage from "../../assets/grass.svg";
-import Mascot from "../../components/Mascot/Mascot";
 import "./LandingPage.css";
 
 const LandingPage = () => {
   return (
     <>
-      {/* <nav className="navLink">
-        <NavLink className="link" to="/login">
-          Login
-        </NavLink>
-      </nav> */}
       <header>
         <img src={skyImage} alt="sky" className="sky" />
       </header>
@@ -102,9 +96,7 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-      <div className="mascot-container">
-        <Mascot />
-      </div>
+      <div className="mascot-container"></div>
       <footer>
         <img src={grassImage} alt="Grass" className="grass" />
       </footer>

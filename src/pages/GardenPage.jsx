@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import AddPlantForm from '../components/Garden/AddPlantForm/AddPlantForm';
-import '../css/garden.css';
-import grassImage from '../assets/grass.svg';
-import skyImage from '../assets/sky.svg';
-import potImage from '../assets/pot.svg';
-import ToDoList from '../components/Garden/ToDoList/ToDoList';
-import WeatherWidget from '../components/Garden/WeatherWidget/WeatherWidget';
-
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import AddPlantForm from "../components/Garden/AddPlantForm/AddPlantForm";
+import "../css/garden.css";
+import grassImage from "../assets/grass.svg";
+import skyImage from "../assets/sky.svg";
+import potImage from "../assets/pot.svg";
+import ToDoList from "../components/Garden/ToDoList/ToDoList";
+import WeatherWidget from "../components/Garden/WeatherWidget/WeatherWidget";
 
 const GardenPage = () => {
   const [pots, setPots] = useState(Array(8).fill(null));
@@ -38,7 +37,7 @@ const GardenPage = () => {
       const plantedVegetables = await response.json();
       // For each planted vegetable, fetch plant information
       const plantsData = await Promise.all(
-        plantedVegetables.map(async plantedVeg => {
+        plantedVegetables.map(async (plantedVeg) => {
           const plantResponse = await fetch(
             `http://localhost:3000/plants/${plantedVeg.plant_id}`
           );
@@ -57,10 +56,10 @@ const GardenPage = () => {
   };
 
   useEffect(() => {
-    const handleOutsideClick = event => {
+    const handleOutsideClick = (event) => {
       menuRefs.current.forEach((menuRef, index) => {
         if (menuRef && !menuRef.contains(event.target)) {
-          setPotOptionsVisible(prevState => {
+          setPotOptionsVisible((prevState) => {
             const newState = [...prevState];
             newState[index] = false;
             return newState;
@@ -76,12 +75,12 @@ const GardenPage = () => {
     };
   }, []);
 
-  const handlePotClick = index => {
+  const handlePotClick = (index) => {
     setSelectedPotIndex(index);
     if (!plants[index]) {
       setIsFormVisible(true);
     } else {
-      setPotOptionsVisible(prevState => {
+      setPotOptionsVisible((prevState) => {
         const newState = [...prevState];
         newState[index] = true;
         return newState;
@@ -103,24 +102,24 @@ const GardenPage = () => {
     }, 1500);
   };
 
-  const handleEdit = plantId => {
+  const handleEdit = (plantId) => {
     console.log("Harvested plant with ID", plantId);
     closeMenu();
   };
 
-  const handlePlantInfo = plantId => {
+  const handlePlantInfo = (plantId) => {
     navigate(`/plant/${plantId}`);
     closeMenu();
   };
 
-  const handleDelete = plantId => {
+  const handleDelete = (plantId) => {
     setShowDeleteConfirmation(true);
     setDeletePlantId(plantId);
     closeMenu();
   };
 
   const confirmDelete = () => {
-    const updatedPlants = plants.map(plant => {
+    const updatedPlants = plants.map((plant) => {
       if (plant && plant.id === deletePlantId) {
         return null;
       }
@@ -137,18 +136,19 @@ const GardenPage = () => {
 
   const handleAddPlant = async (plant, date) => {
     try {
-
-        const response = await fetch(`http://localhost:3000/plants/user/2/${plant.id}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'text/plain' 
-            },
-            body: date 
-        });
-        if (!response.ok) {
-            throw new Error('Failed to add plant');
+      const response = await fetch(
+        `http://localhost:3000/plants/user/2/${plant.id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "text/plain",
+          },
+          body: date,
         }
       );
+      if (!response.ok) {
+        throw new Error("Failed to add plant");
+      }
       if (!response.ok) {
         throw new Error("Failed to add plant");
       }
@@ -161,10 +161,7 @@ const GardenPage = () => {
     } catch (error) {
       console.error("Error adding plant:", error);
     }
-
-};
-
-
+  };
 
   const handleCancel = () => {
     setSelectedPotIndex(null);
@@ -199,7 +196,7 @@ const GardenPage = () => {
             </div>
             {potOptionsVisible[index] && (
               <div
-                ref={el => (menuRefs.current[index] = el)}
+                ref={(el) => (menuRefs.current[index] = el)}
                 className="pot-choices"
               >
                 <div className="left-options">

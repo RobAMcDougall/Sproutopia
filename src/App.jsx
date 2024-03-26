@@ -24,63 +24,57 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route
-            path="/search"
-            element={
-              <ProtectedRoute>
-                <SearchPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/garden"
-            element={
-              <ProtectedRoute>
-                <GardenPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/plant/:id"
-            element={
-              <ProtectedRoute>
-                <PlantInfoPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/calendar"
-            element={
-              <ProtectedRoute>
-                <CalendarPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/" element={<SideNav />}>
+          <Route path="/" element={<Navbar />}>
             <Route
-              path="/kitchen"
+              path="/garden"
               element={
                 <ProtectedRoute>
-                  <KitchenPage />
+                  <GardenPage />
                 </ProtectedRoute>
               }
             />
             <Route
-              path="/recipes"
+              path="/plant/:id"
               element={
                 <ProtectedRoute>
-                  <RecipeListPage />
+                  <PlantInfoPage />
                 </ProtectedRoute>
               }
             />
             <Route
-              path="/recipes/:id"
+              path="/calendar"
               element={
                 <ProtectedRoute>
-                  <RecipePage />
+                  <CalendarPage />
                 </ProtectedRoute>
               }
             />
+            <Route path="/" element={<SideNav />}>
+              <Route
+                path="/kitchen"
+                element={
+                  <ProtectedRoute>
+                    <KitchenPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/recipes"
+                element={
+                  <ProtectedRoute>
+                    <RecipeListPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/recipes/:id"
+                element={
+                  <ProtectedRoute>
+                    <RecipePage />
+                  </ProtectedRoute>
+                }
+              />
+            </Route>
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
