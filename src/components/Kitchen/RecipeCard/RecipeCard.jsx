@@ -1,6 +1,6 @@
 import React, {useContext, useState, useEffect} from 'react'
-import { RecipeContext } from '../../context/RecipeContext'
-import { example } from '../../example'
+import { RecipeContext } from '../../../context/RecipeContext'
+import { example } from '../../../example'
 import { useNavigate } from 'react-router-dom'
 const RecipeCard = () => {
 
