@@ -148,7 +148,7 @@ const GardenPage = () => {
         if (!response.ok) {
             throw new Error('Failed to add plant');
         }
-      );
+      
       if (!response.ok) {
         throw new Error("Failed to add plant");
       }
