@@ -26,9 +26,9 @@ function Navbar() {
           <NavLink className="link" to="/kitchen">
             Kitchen
           </NavLink>
-          <NavLink className="link" to="/" onClick={handleLogout}>
+          {/* <NavLink className="link" to="/" onClick={handleLogout}>
             LogOut
-          </NavLink>
+          </NavLink> */}
         </nav>
       </div>
       <Outlet />
