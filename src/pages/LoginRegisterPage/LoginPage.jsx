@@ -8,8 +8,8 @@ const LoginPage = () => {
   const { login } = useAuth();
 
   const [formData, setFormData] = useState({
-    "username": "",
-    "password": "",
+    username: "",
+    password: "",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -64,7 +64,7 @@ const LoginPage = () => {
         username: userInfoData.username,
       };
       await login(userInfo);
-      navigate("/");
+      navigate("/garden");
     } catch (error) {
       console.error("Error:", error);
     }
