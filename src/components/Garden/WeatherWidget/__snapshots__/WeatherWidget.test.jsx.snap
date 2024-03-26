@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`WeatherWidget > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="weather-widget"
+  >
+    <form>
+      <label>
+        Enter your postcode:
+        <input
+          type="text"
+          value=""
+        />
+      </label>
+      <button
+        type="submit"
+      >
+        Get Weather
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;
