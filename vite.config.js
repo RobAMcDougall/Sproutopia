@@ -12,7 +12,8 @@ export default defineConfig({
         coverage: {
             exclude: [
                 ...configDefaults.coverage.exclude,
-                "*.config.js"
+                "**/*.config.js",
+                "**/example.js"
             ]
         }
     }
