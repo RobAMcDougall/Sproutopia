@@ -8,8 +8,8 @@ const LoginPage = () => {
   const { login } = useAuth();
 
   const [formData, setFormData] = useState({
-    username: "",
-    password: "",
+    "username": "",
+    "password": "",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
