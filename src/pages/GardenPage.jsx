@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import AddPlantForm from "../components/Garden/AddPlantForm/AddPlantForm";
-import "../css/garden.css";
-import grassImage from "../assets/grass.svg";
-import skyImage from "../assets/sky.svg";
-import potImage from "../assets/pot.svg";
-import ToDoList from "../components/Garden/ToDoList/ToDoList";
-import WeatherWidget from "../components/Garden/WeatherWidget/WeatherWidget";
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AddPlantForm from '../components/Garden/AddPlantForm/AddPlantForm';
+import '../css/garden.css';
+import grassImage from '../assets/grass.svg';
+import skyImage from '../assets/sky.svg';
+import potImage from '../assets/pot.svg';
+import ToDoList from '../components/Garden/ToDoList/ToDoList';
+import WeatherWidget from '../components/Garden/WeatherWidget/WeatherWidget';
+
 
 const GardenPage = () => {
   const [pots, setPots] = useState(Array(8).fill(null));
@@ -136,16 +137,16 @@ const GardenPage = () => {
 
   const handleAddPlant = async (plant, date) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/plants/user/2/${plant.id}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            date_planted: date,
-          }),
+
+        const response = await fetch(`http://localhost:3000/plants/user/2/${plant.id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'text/plain' 
+            },
+            body: date 
+        });
+        if (!response.ok) {
+            throw new Error('Failed to add plant');
         }
       );
       if (!response.ok) {
@@ -160,7 +161,10 @@ const GardenPage = () => {
     } catch (error) {
       console.error("Error adding plant:", error);
     }
-  };
+
+};
+
+
 
   const handleCancel = () => {
     setSelectedPotIndex(null);
