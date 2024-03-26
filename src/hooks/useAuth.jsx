@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
   const login = async data => {
     setToken(data.token);
     setUserId(data.userid);
-    setUsername(data.userame);
+    setUsername(data.username);
     navigate("/garden");
   };
 

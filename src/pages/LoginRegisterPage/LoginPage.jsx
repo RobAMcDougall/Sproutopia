@@ -15,10 +15,10 @@ const LoginPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = e => {
-    const { username, value } = e.target;
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [username]: value,
+      [name]: value,
     });
   };
 
@@ -36,6 +36,7 @@ const LoginPage = () => {
           body: JSON.stringify(formData),
         }
       );
+
       if (!tokenResponse.ok) {
         setErrorMessage("Incorrect username or password.");
         setTimeout(() => {
@@ -52,14 +53,14 @@ const LoginPage = () => {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            authorization: tokenData.token,
+            Authorization: tokenData.token,
           },
         }
       );
       const userInfoData = await userInfoResponse.json();
       const userInfo = {
         token: tokenData.token,
-        userid: userInfoData.id,
+        id: userInfoData.id,
         username: userInfoData.username,
       };
       await login(userInfo);
@@ -87,7 +88,7 @@ const LoginPage = () => {
         <p className="form-label">Username or email address</p>
         <input
           type="text"
-          id="email"
+          id="username"
           name="username"
           placeholder="Enter your username or email address"
           onChange={handleInputChange}
