@@ -55,6 +55,25 @@ VALUES
 
 INSERT INTO all_plants ("name", "latin_name", "description", "season", "soil", "watering_freq", "harvesting", "sow_indoors_start", "sow_indoors_end", "sow_outdoors_start", "sow_outdoors_end", "harvest_start", "harvest_end", "germination_min", "germination_max", "storage", "sow_and_plant_info", "image_url", "icon_url")
 VALUES 
+    ('Tomato',
+    'Solanum lycopersicum',
+    'Tomatoes are the edible berry of the plant Solanum lycopersicum, commonly known as a tomato plant.',
+    'Summer',
+    'Well-drained, fertile soil',
+    2,
+    'Harvest when the fruits are ripe.',
+    '2024-03-01',
+    '2024-04-15',
+    '2024-04-15',
+    '2024-05-15',
+    '2024-06-15',
+    '2024-09-15',
+    7,
+    14,
+    'Store in a cool, dry place.',
+    'Sow indoors in pots or trays.',
+    'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.lakesideplantcentre.co.uk%2Fnews%2F673%2Fhow-to-grow-tomatoes&psig=AOvVaw0qPfxHtEC4IAUb4_W0aSVA&ust=1711552846615000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPiSsK2dkoUDFQAAAAAdAAAAABAZ', 'www.example.com'
+),
    ('Lettuce', 'Lactuca sativa', 'Lettuce is a leafy vegetable that is often used in salads.', 'Spring, Fall', 'Well-drained, loamy soil', 1, 'Harvest the outer leaves as needed.', '2024-02-15', '2024-03-15', '2024-03-15', '2024-04-15', '2024-04-15', '2024-05-30', 7, 10, 'Store in the refrigerator.', 'Sow directly into the garden bed.', 'https://cdn.pixabay.com/photo/2015/09/14/19/53/nature-940032_1280.jpg', 'www.example.com'),
    ('Carrot', 'Daucus carota subsp. sativus', 'Carrot is a root vegetable known for its bright orange colour and sweet flavour.', 'Spring, Fall', 'Loose, well-drained soil free from rocks', 2, 'Harvest when roots reach desired size.', '2024-02-15', '2024-03-31', '2024-03-15', '2024-06-15', '2024-06-15', '2024-09-30', 10, 21, 'Store in a cool, humid environment or refrigerate.', 'Sow seeds directly into the garden bed.', 'https://cdn.pixabay.com/photo/2017/09/12/20/03/carrot-2743498_1280.jpg','www.example.com'),
    ('Spinach', 'Spinacia oleracea', 'Spinach is a leafy green vegetable rich in iron and vitamins.', 'Spring, Fall', 'Well-drained, fertile soil', 3, 'Harvest outer leaves as needed.', '2024-02-01', '2024-03-15', '2024-03-01', '2024-05-15', '2024-04-01', '2024-06-30', 5, 10, 'Store in the refrigerator.', 'Sow seeds directly into the garden bed.', 'https://cdn.pixabay.com/photo/2016/01/07/07/57/vegetables-1125420_1280.jpg', 'www.example.com'),
