@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./../GrowthCalendar.css";
 
+
 function GrowthCalendarIndoors() {
   const { id } = useParams();
   const [plant, setPlant] = useState({});

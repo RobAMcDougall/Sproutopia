@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AddPlantForm > AddPlantForm matches snapshot 1`] = `<DocumentFragment />`;
+
+exports[`AddPlantForm > matches snapshot 1`] = `<DocumentFragment />`;
+
+exports[`AddPlantForm matches snapshot 1`] = `<DocumentFragment />`;

@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import GrowthCalendarIndoors from "../../components/PlantInfo/GrowthCalendarIndoors/GrowthCalendarIndoors";
 import GrowthCalendarOutdoors from "../../components/PlantInfo/GrowthCalendarOutdoors/GrowthCalendarOutdoors";
 import GrowthCalendarHarvest from "../../components/PlantInfo/GrowthCalendarHarvest/GrowthCalendarHarvest";
-
+import grassImage from "../../assets/grass.svg";
 import "./index.css";
+
 const PlantInfoPage = () => {
   const { id } = useParams();
   const [plant, setPlant] = useState({});
@@ -19,7 +20,7 @@ const PlantInfoPage = () => {
     }
 
     displayPlant();
-  }, []);
+  }, [id]); // Adding id as a dependency to re-fetch data when id changes
 
   return (
     <div className="plant-info-container">
@@ -55,12 +56,15 @@ const PlantInfoPage = () => {
         <div className="info-label">Sow Outdoors:</div>
         <div className="info-value">
           <GrowthCalendarOutdoors />
-          </div>
-          <div className="info-label">Harvest:</div>
-          <div className="info-value">
+        </div>
+        <div className="info-label">Harvest:</div>
+        <div className="info-value">
           <GrowthCalendarHarvest />
         </div>
       </div>
+      <footer>
+        <img src={grassImage} alt="Grass" className="grass" />
+      </footer>
     </div>
   );
 };
