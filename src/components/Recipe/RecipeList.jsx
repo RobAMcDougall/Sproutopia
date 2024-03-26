@@ -7,9 +7,10 @@ const RecipeList = () => {
     const {id} = useParams();
     
       const getRecipeInformation = async () => {
-        const response = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=501fcf21715c4fa7bfdc19da10e58dc4`);
+        const response = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=1f6c8dec590648dea3f0d2d501385b28`);
         const data = await response.json();
         setRecipeInformation(data);
+       
       }
 
        

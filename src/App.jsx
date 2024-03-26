@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import { AuthProvider } from "./hooks/useAuth";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 import CalendarPage from "./pages/CalendarPage";
 import GardenPage from "./pages/GardenPage";
 import KitchenPage from "./pages/KitchenPage";
@@ -17,22 +19,72 @@ import Navbar from "./components/Header/Navbar";
 const App = () => {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/" element={<Navbar />}>
-          <Route path="/garden" element={<GardenPage />} />
-          <Route path="/plant/:id" element={<PlantInfoPage />} />
-          <Route path="/calendar" element={<CalendarPage />} />
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route
+            path="/search"
+            element={
+              <ProtectedRoute>
+                <SearchPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/garden"
+            element={
+              <ProtectedRoute>
+                <GardenPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/plant/:id"
+            element={
+              <ProtectedRoute>
+                <PlantInfoPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/calendar"
+            element={
+              <ProtectedRoute>
+                <CalendarPage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/" element={<SideNav />}>
-            <Route path="/kitchen" element={<KitchenPage />} />
-            <Route path="/recipes" element={<RecipeListPage />} />
-            <Route path="/recipes/:id" element={<RecipePage />} />
+            <Route
+              path="/kitchen"
+              element={
+                <ProtectedRoute>
+                  <KitchenPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/recipes"
+              element={
+                <ProtectedRoute>
+                  <RecipeListPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/recipes/:id"
+              element={
+                <ProtectedRoute>
+                  <RecipePage />
+                </ProtectedRoute>
+              }
+            />
           </Route>
-        </Route>
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </AuthProvider>
     </>
   );
 };

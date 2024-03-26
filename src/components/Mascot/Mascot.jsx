@@ -8,14 +8,16 @@ const Mascot = () => {
   const [messages, setMessages] = useState([]);
 
   const chatWithGPT3 = async (userInput) => {
-    const apiEndpoint = 'https://api.openai.com/v1/engines/davinci-codex/completions';
-    const apiKey = import.meta.env.REACT_APP_API_KEY;
+    const apiEndpoint = 'https://api.openai.com/v1/completions';
+    const apiKey = import.meta.env.VITE_APP_API_KEY;
+    console.log(apiKey)
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${apiKey}`
     };
 
     const data = {
+      model: 'gpt-3.5-turbo', // Update the model if needed
       prompt: userInput,
       max_tokens: 150
     };
