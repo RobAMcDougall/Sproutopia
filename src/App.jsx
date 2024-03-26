@@ -11,7 +11,6 @@ import LoginPage from "./pages/LoginRegisterPage/LoginPage";
 import RegisterPage from "./pages/LoginRegisterPage/RegisterPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import PlantInfoPage from "./pages/PlantInfoPage/PlantInfoPage";
-import SearchPage from "./pages/SearchPage";
 import RecipeListPage from "./pages/RecipeListPage";
 import RecipePage from "./pages/RecipePage";
 import SideNav from "./components/Kitchen/SideNav/SideNav";
@@ -24,14 +23,6 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route
-            path="/search"
-            element={
-              <ProtectedRoute>
-                <SearchPage />
-              </ProtectedRoute>
-            }
-          />
           <Route
             path="/garden"
             element={
