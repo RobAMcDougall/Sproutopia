@@ -22,7 +22,7 @@ const WeatherWidget = () => {
     <div className="weather-widget">
       <form onSubmit={handleSubmit}>
         <label>
-          Enter your postcode:
+          Enter your postcode to get the latest weather information:
           <input
             type="text"
             value={postcode}
@@ -33,7 +33,6 @@ const WeatherWidget = () => {
       </form>
       {weatherData && (
         <div>
-          <h2>Weather Information</h2>
           <p>Location: {weatherData.location.name}</p>
           <p>Temperature: {weatherData.current.temp_c}°C</p>
           <p>Condition: {weatherData.current.condition.text}</p>

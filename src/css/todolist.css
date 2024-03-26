@@ -1,13 +1,12 @@
 .todo-list {
-    max-width: 400px;
+    width: 360px;
     max-height: 80%;
     overflow-y: auto; /* Enable vertical scrolling */
-    margin-top: 5%;
+    margin-top: 10%;
     margin-right: 2%;
     padding: 20px;
-    background-color: #DEF3C3;
+    background-color: #def3c38c;
     border-radius: 10px;
-    box-shadow: 0 0 10px #2D5039;
     font-size: 14px;
   }
   
