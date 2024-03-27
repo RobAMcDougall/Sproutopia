@@ -13,8 +13,8 @@ import NotFoundPage from "./pages/NotFoundPage";
 import PlantInfoPage from "./pages/PlantInfoPage/PlantInfoPage";
 import RecipeListPage from "./pages/RecipeListPage";
 import RecipePage from "./pages/RecipePage";
-import SideNav from "./components/Kitchen/SideNav/SideNav";
 import Navbar from "./components/Header/Navbar";
+import SideNav from "./components/Kitchen/SideNav";
 
 const App = () => {
   return (
