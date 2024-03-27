@@ -7,6 +7,8 @@ const RecipeCard = () => {
   const { ingredients, intolerances, allRecipes, setRecipes } = useContext(RecipeContext);
    
   const [cuisineType, setCuisineType] = useState("");
+
+  
  
   
 
