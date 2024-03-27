@@ -106,7 +106,6 @@ const GardenPage = () => {
     } catch (error) {
       console.error("Error fetching plants:", error);
     }
-  };
 
   const calculateNextWateringDate = (plantingDate, waterFrequency) => {
     const date = new Date(plantingDate);
