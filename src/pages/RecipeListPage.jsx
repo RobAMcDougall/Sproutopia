@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import SideNav from "../components/Kitchen/SideNav";
-import RecipeList from "../components/Kitchen/RecipeList/RecipeList";
+
+import RecipeList from "../components/Recipe/RecipeList";
+
 import AddIngredientsModal from "../components/Header/Shared/AddIngredientsModal";
 
 const RecipeListPage = () => {

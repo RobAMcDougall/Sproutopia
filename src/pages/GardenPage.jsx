@@ -7,6 +7,7 @@ import skyImage from "../assets/sky.svg";
 import potImage from "../assets/pot.svg";
 import ToDoList from "../components/Garden/ToDoList/ToDoList";
 import WeatherWidget from "../components/Garden/WeatherWidget/WeatherWidget";
+import waterAlert from "../assets/water-alert.png";
 
 const GardenPage = () => {
   const [pots, setPots] = useState(Array(8).fill(null));
@@ -20,40 +21,13 @@ const GardenPage = () => {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [deletePlantId, setDeletePlantId] = useState(null);
   const [animationCoordinates, setAnimationCoordinates] = useState(null);
+  const [harvestedPlantIndex, setHarvestedPlantIndex] = useState(null);
   const menuRefs = useRef(Array(8).fill(null));
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch planted vegetables
     fetchPlantedVegetables();
   }, []);
-
-  const fetchPlantedVegetables = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/plants/user/2");
-      if (!response.ok) {
-        throw new Error("Failed to fetch planted vegetables");
-      }
-      const plantedVegetables = await response.json();
-      // For each planted vegetable, fetch plant information
-      const plantsData = await Promise.all(
-        plantedVegetables.map(async (plantedVeg) => {
-          const plantResponse = await fetch(
-            `http://localhost:3000/plants/${plantedVeg.plant_id}`
-          );
-          const plantData = await plantResponse.json();
-          return {
-            ...plantedVeg,
-            ...plantData,
-          };
-        })
-      );
-      setPlants(plantsData);
-      setPlantedVeg(plantedVegetables);
-    } catch (error) {
-      console.error("Error fetching plants:", error);
-    }
-  };
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -75,65 +49,6 @@ const GardenPage = () => {
     };
   }, []);
 
-  const handlePotClick = (index) => {
-    setSelectedPotIndex(index);
-    if (!plants[index]) {
-      setIsFormVisible(true);
-    } else {
-      setPotOptionsVisible((prevState) => {
-        const newState = [...prevState];
-        newState[index] = true;
-        return newState;
-      });
-    }
-  };
-
-  const handleWater = (plantId, index) => {
-    console.log("Plant watered with ID", plantId);
-    closeMenu();
-    const potElement = document.querySelector(`#pot-${index}`);
-    const potRect = potElement.getBoundingClientRect();
-    setAnimationCoordinates({
-      top: potRect.top + window.scrollY,
-      left: potRect.left + window.scrollX,
-    });
-    setTimeout(() => {
-      setAnimationCoordinates(null);
-    }, 1500);
-  };
-
-  const handleEdit = (plantId) => {
-    console.log("Harvested plant with ID", plantId);
-    closeMenu();
-  };
-
-  const handlePlantInfo = (plantId) => {
-    navigate(`/plant/${plantId}`);
-    closeMenu();
-  };
-
-  const handleDelete = (plantId) => {
-    setShowDeleteConfirmation(true);
-    setDeletePlantId(plantId);
-    closeMenu();
-  };
-
-  const confirmDelete = () => {
-    const updatedPlants = plants.map((plant) => {
-      if (plant && plant.id === deletePlantId) {
-        return null;
-      }
-      return plant;
-    });
-    setPlants(updatedPlants);
-
-    setShowDeleteConfirmation(false);
-  };
-
-  const cancelDelete = () => {
-    setShowDeleteConfirmation(false);
-  };
-
   const handleAddPlant = async (plant, date) => {
     try {
       const response = await fetch(
@@ -149,9 +64,6 @@ const GardenPage = () => {
       if (!response.ok) {
         throw new Error("Failed to add plant");
       }
-      if (!response.ok) {
-        throw new Error("Failed to add plant");
-      }
       console.log("Plant added:", plant, "Date:", date);
       const updatedPlants = [...plants];
       updatedPlants[selectedPotIndex] = plant;
@@ -161,6 +73,130 @@ const GardenPage = () => {
     } catch (error) {
       console.error("Error adding plant:", error);
     }
+  };
+
+  const fetchPlantedVegetables = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/plants/user/2");
+      if (!response.ok) {
+        throw new Error("Failed to fetch planted vegetables");
+      }
+      const plantedVegetables = await response.json();
+      const plantsData = await Promise.all(
+        plantedVegetables.map(async (plantedVeg) => {
+          const plantResponse = await fetch(
+            `http://localhost:3000/plants/${plantedVeg.plant_id}`
+          );
+          const plantData = await plantResponse.json();
+          const nextWateringDate = calculateNextWateringDate(
+            plantedVeg.date_planted,
+            plantData.watering_freq
+          );
+          const needsWatering = isWateringDue(nextWateringDate);
+          return {
+            ...plantedVeg,
+            ...plantData,
+            nextWateringDate,
+            needsWatering,
+          };
+        })
+      );
+      setPlants(plantsData);
+      setPlantedVeg(plantedVegetables);
+    } catch (error) {
+      console.error("Error fetching plants:", error);
+    }
+  };
+
+  const calculateNextWateringDate = (plantingDate, waterFrequency) => {
+    const date = new Date(plantingDate);
+    date.setDate(date.getDate() + waterFrequency);
+    return date;
+  };
+
+  const isWateringDue = (nextWateringDate) => {
+    const currentDate = new Date();
+    return nextWateringDate <= currentDate;
+  };
+
+  const handleWater = (plantId, index) => {
+    console.log("Plant watered with ID", plantId);
+    closeMenu();
+    const updatedPlants = [...plants];
+    updatedPlants[index].needsWatering = false;
+    setPlants(updatedPlants);
+    console.log(updatedPlants);
+
+    const potElement = document.querySelector(`#pot-${index}`);
+    const potRect = potElement.getBoundingClientRect();
+    setAnimationCoordinates({
+      top: potRect.top + window.scrollY,
+      left: potRect.left + window.scrollX,
+    });
+    setTimeout(() => {
+      setAnimationCoordinates(null);
+    }, 1500);
+  };
+
+  const handlePotClick = (index) => {
+    setSelectedPotIndex(index);
+    if (!plants[index]) {
+      setIsFormVisible(true);
+    } else {
+      setPotOptionsVisible((prevState) => {
+        const newState = [...prevState];
+        newState[index] = true;
+        return newState;
+      });
+    }
+  };
+
+  const handleHarvest = (plantId, index) => {
+    console.log("Harvested plant with ID", plantId);
+    closeMenu();
+
+    const plantElement = document.querySelector(
+      `#plant-details-${index} .vegetable-overlay`
+    );
+    if (plantElement) {
+      plantElement.classList.add("harvest-animation");
+
+      setTimeout(() => {
+        setPlants((prevPlants) => {
+          const updatedPlants = [...prevPlants];
+          updatedPlants[index] = null;
+          return updatedPlants;
+        });
+      }, 600);
+    }
+  };
+
+  const handlePlantInfo = (plantId) => {
+    navigate(`/plant/${plantId}`);
+    closeMenu();
+  };
+
+  const handleDelete = (plantId, index) => {
+    setShowDeleteConfirmation(true);
+    setDeletePlantId(plantId);
+    setSelectedPotIndex(index);
+    closeMenu();
+  };
+
+  const confirmDelete = () => {
+    const updatedPlants = [...plants];
+    updatedPlants[selectedPotIndex] = null;
+
+    const updatedPlantedVeg = [...plantedVeg];
+    updatedPlantedVeg[selectedPotIndex] = null;
+    setPlants(updatedPlants);
+    setPlantedVeg(updatedPlantedVeg);
+
+    setShowDeleteConfirmation(false);
+  };
+
+  const cancelDelete = () => {
+    setShowDeleteConfirmation(false);
   };
 
   const handleCancel = () => {
@@ -177,6 +213,10 @@ const GardenPage = () => {
       <ToDoList />
       <WeatherWidget />
       <img src={skyImage} alt="sky" className="sky" />
+      <p className="garden-page-title">Welcome to your virtual garden!</p>
+      <p className="garden-page-info">
+        You will be notified if a plant needs your attention
+      </p>
       <div className="plant-pots">
         {pots.map((_, index) => (
           <div key={index} className="plant-pot-container">
@@ -187,11 +227,16 @@ const GardenPage = () => {
             >
               <img src={potImage} alt="Pot" />
               {plants[index] && (
-                <img
-                  className="vegetable-overlay"
-                  src={plants[index].icon_url}
-                  alt={plants[index].name}
-                />
+                <div className="plant-details" id={`plant-details-${index}`}>
+                  <img
+                    className="vegetable-overlay"
+                    src={plants[index].icon_url}
+                    alt={plants[index].name}
+                  />
+                  {plants[index].needsWatering && (
+                    <img className="alert-icon" src={waterAlert} />
+                  )}
+                </div>
               )}
             </div>
             {potOptionsVisible[index] && (
@@ -207,8 +252,8 @@ const GardenPage = () => {
                     Water
                   </div>
                   <div
-                    className="edit-choice option"
-                    onClick={() => handleEdit(plants[index].id)}
+                    className="harvest-choice option"
+                    onClick={() => handleHarvest(plantedVeg[index].id, index)}
                   >
                     Harvest
                   </div>
@@ -229,6 +274,7 @@ const GardenPage = () => {
                 </div>
               </div>
             )}
+            {harvestedPlantIndex === index && <HarvestAnimation />}
             {animationCoordinates &&
               animationCoordinates.top &&
               animationCoordinates.left && (
@@ -264,5 +310,7 @@ const WateringCanAnimation = ({ coordinates }) => (
     <div className="watering-can"></div>
   </div>
 );
+
+const HarvestAnimation = () => <div className="harvest-animation"></div>;
 
 export default GardenPage;

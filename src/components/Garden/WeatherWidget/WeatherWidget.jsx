@@ -22,7 +22,7 @@ const WeatherWidget = () => {
     <div className="weather-widget">
       <form onSubmit={handleSubmit}>
         <label>
-          Enter your postcode:
+          Enter your postcode to get the latest weather information:
           <input
             type="text"
             value={postcode}
@@ -32,16 +32,15 @@ const WeatherWidget = () => {
         <button type="submit">Get Weather</button>
       </form>
       {weatherData && (
-        <div>
-          <h2>Weather Information</h2>
-          <p>Location: {weatherData.location.name}</p>
-          <p>Temperature: {weatherData.current.temp_c}°C</p>
-          <p>Condition: {weatherData.current.condition.text}</p>
-          <img src={weatherData.current.condition.icon} alt="Weather Icon" />
-          {weatherData.current.condition.text.toLowerCase().includes('rain') && (
-            <p className="rain-message">Looks like it might be raining where you are. You may not need to water your plants today.</p>
-          )}
-        </div>
+        <div className="weather-info">
+          <img src={weatherData.current.condition.icon} className= "weather-icon" alt="Weather Icon" />
+        <p>Location: {weatherData.location.name}</p>
+        <p>Temperature: {weatherData.current.temp_c}°C</p>
+        <p>Condition: {weatherData.current.condition.text}</p>
+        {weatherData.current.condition.text.toLowerCase().includes('rain') && (
+          <p className="rain-message">Looks like it might be raining where you are. You may not need to water your plants today.</p>
+        )}
+      </div>
       )}
     </div>
   );

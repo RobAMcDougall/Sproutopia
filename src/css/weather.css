@@ -1,17 +1,17 @@
 .weather-widget {
-    width: 300px; 
-    float: left;
-    margin-right: 20px;
-    margin-left: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    width: 350px; 
+    margin-top: 4%;
+    margin-left: 2%;
     padding: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    border-radius: 10px;
+    background-color: #def3c38c;
+
   }
   
   .weather-widget form {
     margin-bottom: 10px;
+    text-align: center;
   }
   
   .weather-widget label {
@@ -21,14 +21,16 @@
   
   .weather-widget input[type="text"] {
     width: calc(100% - 10px);
-    padding: 8px;
+    padding: 5px;
     border: 1px solid #ccc;
+    background-color: #F8FEE6;
     border-radius: 5px;
     outline: none;
   }
   
   .weather-widget button {
-    padding: 8px 15px;
+    margin-top: 5px;
+    padding: 5px 15px;
     background-color: #2D5039;
     color: #fff;
     border: none;
@@ -41,15 +43,21 @@
   }
   
   .weather-info {
-    margin-top: 20px;
+    margin-top: 10px;
   }
-  
   .weather-info p {
-    margin-bottom: 10px;
+    padding: 3px;
+  }
+
+  .weather-icon {
+    position: absolute;
+    right: 30px;
+    top: 135px;
   }
   
-  .weather-info p.rain-message {
-    color: #ff6347;
+  .rain-message {
+    color: #146e85;
     font-weight: bold;
+    margin-top: 8%;
+    width: 300px;
   }
-  

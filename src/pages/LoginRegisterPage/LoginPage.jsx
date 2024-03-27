@@ -64,7 +64,7 @@ const LoginPage = () => {
         username: userInfoData.username,
       };
       await login(userInfo);
-      navigate("/");
+      navigate("/garden");
     } catch (error) {
       console.error("Error:", error);
     }

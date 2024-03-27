@@ -8,6 +8,7 @@
 
 .plant-pots {
   display: grid;
+  margin-top: 5%;
   grid-template-columns: repeat(4, 1fr);
   row-gap: 100px;
   column-gap: 40px;
@@ -76,7 +77,7 @@
   -webkit-animation-iteration-count: 2;
 }
 
-.vegetable-overlay:hover {
+/* .vegetable-overlay:hover {
   cursor: pointer;
   animation-name: bounce;
   -moz-animation-name: bounce;
@@ -85,9 +86,9 @@
 @keyframes bounce {
 
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
   }
-}
+} */
 
 
   .popup-container {
@@ -193,7 +194,7 @@
   
 .pot-choices {
   position: absolute;
-  transform: translate(-21%, -160%);
+  transform: translate(-25%, -160%);
   z-index: 1;
   display: flex;
   justify-content: space-around; 
@@ -294,4 +295,50 @@
   100% {
     transform: translate(-50%, -50%) rotate(0deg);
   }
+}
+
+
+@keyframes pullPlant {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-50px) rotate(10deg); 
+  }
+  75% {
+    transform: translateY(-80px) rotate(20deg); 
+  }
+  100% {
+    transform: translateY(-150px) rotate(30deg); 
+    opacity: 50%;
+  }
+}
+
+.harvest-animation {
+  position: absolute;
+  top: -20%; 
+  left: 20%; 
+  transform: translate(150px, 150px); 
+  animation: pullPlant 1s ease-in-out forwards; 
+  z-index: 100; 
+}
+
+.alert-icon {
+  position: absolute;
+  width: 40px;
+  top: -30%; 
+  left: -10%; 
+
+}
+
+.garden-page-title {
+  position: absolute;
+  top: 150px;
+  font-size: 20px;
+}
+
+.garden-page-info {
+  position: absolute;
+  top: 180px;
+  font-size: 14px;
 }
