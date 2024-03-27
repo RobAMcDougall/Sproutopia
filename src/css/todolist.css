@@ -9,7 +9,10 @@
     border-radius: 10px;
     font-size: 14px;
   }
-  
+  .todo-list h2 {
+    font-size: 15px;
+    font-weight: bold;
+  }
   
   .tasks, .completed-tasks {
     margin-top: 20px;

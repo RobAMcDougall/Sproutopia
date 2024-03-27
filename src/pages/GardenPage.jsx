@@ -81,9 +81,12 @@ const fetchPlantedVegetables = async () => {
     const plantIds = plantedVegetables.map(plantedVeg => plantedVeg.plant_id);
     
     const plantDataResponses = await Promise.all(
-      plantIds.map(plantId =>
-        fetch(`http://localhost:3000/plants/${plantId}`).then(response => response.json())
-      )
+      plantIds.map(plantId => {
+        if (typeof plantId !== 'number') {
+          throw new Error('Invalid plant ID');
+        }
+        return fetch(`http://localhost:3000/plants/${plantId}`).then(response => response.json());
+      })
     );
 
     const plantsData = plantedVegetables.map((plantedVeg, index) => {
@@ -104,6 +107,7 @@ const fetchPlantedVegetables = async () => {
     console.error('Error fetching plants:', error);
   }
 };
+
 
 
   const calculateNextWateringDate = (plantingDate, waterFrequency) => {
