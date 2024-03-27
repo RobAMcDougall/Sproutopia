@@ -10,14 +10,14 @@
   display: grid;
   margin-top: 1%;
   grid-template-columns: repeat(4, 1fr);
-  row-gap: 100px;
-  column-gap: 40px;
+  row-gap: 80px;
+  column-gap: 20px;
   grid-auto-flow: row; 
 }
 
 .plant-pot {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   position: relative;
 }
 
@@ -66,7 +66,7 @@
   position: absolute;
   bottom: 60%;
   width: 65%;
-  left: 18%;
+  left: 15%;
   -webkit-animation-duration: 0.3s;
   animation-duration: 0.3s;
   -webkit-animation-fill-mode: both;
@@ -194,7 +194,7 @@
   
 .pot-choices {
   position: absolute;
-  transform: translate(-25%, -160%);
+  transform: translate(-30%, -160%);
   z-index: 1;
   display: flex;
   justify-content: space-around; 
@@ -211,7 +211,7 @@
 .right-options .option {
   margin: 5px 25px;
   text-align: center;
-  padding: 10px 20px;
+  padding: 7px 15px;
   cursor: pointer;
   background-color: #2D5039;
   color: #ffffff;
@@ -274,12 +274,12 @@
   position: absolute;
   top: 50%;
   left: 100%;
-  transform: translate(-20%, -50%);
+  transform: translate(-20%, -100%);
 }
 
 .watering-can {
-  width: 150px; 
-  height: 150px; 
+  width: 120px; 
+  height: 120px; 
   background-image: url('https://i.ibb.co/rfPHJRY/watercan.png'); 
   background-size: cover;
   animation: wateringCan 1s linear forwards; 
@@ -316,7 +316,7 @@
 
 .harvest-animation {
   position: absolute;
-  top: -20%; 
+  top: -40%; 
   left: 20%; 
   transform: translate(150px, 150px); 
   animation: pullPlant 1s ease-in-out forwards; 
@@ -333,12 +333,12 @@
 
 .garden-page-title {
   position: absolute;
-  top: 80px;
+  top: 60px;
   font-size: 20px;
 }
 
 .garden-page-info {
   position: absolute;
-  top: 120px;
+  top: 100px;
   font-size: 14px;
 }

@@ -27,7 +27,7 @@ function Navbar() {
             Kitchen
           </NavLink>
           <NavLink className="link" to="/" onClick={handleLogout}>
-            LogOut
+            Sign out
           </NavLink>
         </nav>
       </div>
