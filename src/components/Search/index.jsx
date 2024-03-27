@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./SearchBar.css";
-export const SearchBar = () => {
+import { Navigate } from "react-router-dom";
+
+export const SearchBar = ({ setResults }) => {
   const [input, setInput] = useState("");
 
   const fetchData = (value) => {
@@ -15,12 +17,17 @@ export const SearchBar = () => {
             plant.name.toLowerCase().includes(value)
           );
         });
+        setResults(results);
       });
   };
 
   const handleChange = (value) => {
     setInput(value);
     fetchData(value);
+  };
+
+  const handleSubmit = (val) => {
+    Navigate(`plant/${val}`);
   };
 
   return (
@@ -36,27 +43,3 @@ export const SearchBar = () => {
     </div>
   );
 };
-
-// import { useParams } from "react-router-dom";
-// const { id } = useParams();
-
-// const getFilteredVeg = (query, veg) => {
-//     if(!query) {
-//         return veg;
-//     }
-//     return veg.filter()
-// }
-// export default function Search() {
-//     const [query, setQuery] = useState('')
-
-//     return (
-//         <>
-//             <label>Search</label>
-//             <input type="text" onChange={e => setQuery(e.target.value)} />
-//         </>
-//     )
-// }
-// const handlePlantInfo = (plantId) => {
-//     navigate(`/plant/${plantId}`);
-//     closeMenu();
-//   };
