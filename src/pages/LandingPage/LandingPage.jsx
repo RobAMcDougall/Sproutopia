@@ -19,7 +19,7 @@ const LandingPage = () => {
               alt="Sproutapia Title"
               className="logo-landing"
             />
-            <h1 className="herotitle">From Planting to Plate</h1>
+            <h1 className="herotitle">From Planting to Plating</h1>
           </div>
           <div className="hero2">
             <div className="sowheader">
@@ -57,8 +57,8 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-      <hr className="divider" />
-      <div className="container">
+
+      {/* <div className="container">
         <div className="text">
           <ul>
             <li>
@@ -84,10 +84,10 @@ const LandingPage = () => {
           </ul>
         </div>
         <div className="landing-img">
-          <img className="circular" src="src/assets/cook.jpeg" alt="#" />
-        </div>
+          <img className="circular" src="src/assets/cook.jpeg" alt="#" /> */}
+        {/* </div> */}
       
-      </div>
+      {/* </div> */}
 
       {/* <div className="container">
         <div className="sow-landing">
@@ -127,9 +127,9 @@ const LandingPage = () => {
         </div>
       </div> */}
 
-      <footer>
-        {/* <img src={grassImage} alt="Grass" className="grass" /> */}
-      </footer>
+
+        <img src={grassImage} alt="Grass" className="grass" />
+
     </>
   );
 };
