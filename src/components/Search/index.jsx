@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import "./SearchBar.css";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const SearchBar = ({ setResults }) => {
   const [input, setInput] = useState("");
+  const navigate = useNavigate(); 
 
-  const fetchData = (value) => {
-    fetch("https://sproutopia-backend.onrender.com/plants")
-      .then((response) => response.json())
-      .then((json) => {
-        const results = json.filter((plant) => {
-          return (
-            value &&
-            plant &&
-            plant.name &&
-            plant.name.toLowerCase().includes(value)
-          );
-        });
-        setResults(results);
-      });
+  const fetchData = async (value) => {
+    try {
+      const response = await fetch("https://sproutopia-backend.onrender.com/plants/all");
+      const json = await response.json();
+      console.log(json);
+      const results = json.filter((plant) =>
+        plant.name && plant.name.toLowerCase().includes(value.toLowerCase())
+      );
+      console.log(results);
+      setResults(results);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   const handleChange = (value) => {
@@ -26,8 +26,17 @@ export const SearchBar = ({ setResults }) => {
     fetchData(value);
   };
 
-  const handleSubmit = (val) => {
-    Navigate(`plant/${val}`);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const matchingPlant = setResults.find((plant) =>
+      plant.name.toLowerCase().includes(input.toLowerCase())
+    );
+    if (matchingPlant) {
+      navigate(`/plant/${matchingPlant.id}`); 
+    } else {
+ 
+      navigate('/'); 
+    }
   };
 
   return (
