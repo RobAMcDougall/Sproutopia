@@ -9,7 +9,6 @@ const LandingPage = () => {
     <>
       <Landingnav />
       <header>
-        <img src={skyImage} alt="sky" className="sky" />
       </header>
       <div className="hero">
         <div className="hero-content">

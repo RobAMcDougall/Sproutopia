@@ -1,8 +1,8 @@
 .todo-list {
-    width: 360px;
+    width: 330px;
     max-height: 80%;
     overflow-y: auto; 
-    margin-top: 8%;
+    margin-top: 4%;
     margin-right: 2%;
     padding: 20px;
     background-color: #def3c38c;
@@ -66,7 +66,7 @@
     padding: 8px 10px;
     margin-right: 10px;
     border-radius: 5px;
-    border: 2px solid #2D5039;
+    border: 1px solid #ccc;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   

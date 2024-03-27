@@ -33,7 +33,7 @@ function Navbar() {
           <SearchBar setResults={setResults} />
           <SearchResultsList results={results} />
           <NavLink className="link" to="/" onClick={handleLogout}>
-            LogOut
+            Sign out
           </NavLink>
         </nav>
       </div>
