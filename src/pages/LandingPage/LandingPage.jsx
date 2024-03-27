@@ -2,10 +2,12 @@ import React from "react";
 import skyImage from "../../assets/sky.svg";
 import grassImage from "../../assets/grass.svg";
 import "./LandingPage.css";
+import Landingnav from "../../components/Landingnav/Landingnav";
 
 const LandingPage = () => {
   return (
     <>
+      <Landingnav />
       <header>
         <img src={skyImage} alt="sky" className="sky" />
       </header>

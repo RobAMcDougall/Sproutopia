@@ -1,13 +1,9 @@
-header {
+/* header {
     position: fixed;
-}
+} */
 
 .hero {
     margin-top: 8%;
-}
-
-.mascot-container {
-    align-items: left;
 }
 
 .hero2 {
