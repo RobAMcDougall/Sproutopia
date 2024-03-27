@@ -1,0 +1,26 @@
+/* header {
+    position: fixed;
+} */
+
+.hero {
+    margin-top: 8%;
+}
+
+.hero2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+.grass {
+    position: fixed
+}
+.sky {
+    position: fixed
+}
+.circular {
+    border-radius: 50%;
+}
