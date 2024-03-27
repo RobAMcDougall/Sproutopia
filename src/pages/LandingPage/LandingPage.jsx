@@ -13,8 +13,12 @@ const LandingPage = () => {
       <div className="hero">
         <div className="hero-content">
           <div className="hero1">
-            <img src="src/assets/logo-header.png" alt="Sproutapia Title" />
-            <h1 className="herotitle">From Planting to Plate</h1>
+            <img
+              src="src/assets/logo-header.png"
+              alt="Sproutapia Title"
+              className="logo-landing"
+            />
+            <h1 className="herotitle">From Planting to Plating</h1>
           </div>
           <div className="hero2">
             <div className="sowheader">
@@ -52,55 +56,79 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-      <hr className="divider" />
-      <div className="sow">
-        <div className="sow-content">
-          <h3>Grow with confidence using our vegetable tracker!</h3>
-          <img src="" alt="" />
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique
-            quod ea, illum nesciunt et voluptate hic fugiat! Vitae, dignissimos
-            eaque pariatur consequuntur ea dolor quae sit architecto, nam,
-            voluptatum animi!
-          </p>
+
+      {/* <div className="container">
+        <div className="text">
+          <ul>
+            <li>
+              Explore the plant database and view planting schedules, harvesting
+              times and watering frequencies
+            </li>
+            <br />
+            <li>
+              Plant your seeds and update your virtual garden to reflect your
+              real one! Your little vegetable friend will alert you when it’s
+              thirsty and when it’s ready to be harvested
+            </li>
+            <br />
+            <li>
+              Organise and keep track of all your important gardening tasks in
+              your to-do list
+            </li>
+            <br />
+            <li>
+              Is it going to rain today? Use the weather widget to help manage
+              your upcoming tasks and watering schedule
+            </li>
+          </ul>
         </div>
-      </div>
-      <hr className="divider" />
-      <div className="harvest">
-        <div className="harvest-content">
-          <h3>
-            Never miss a harvest and take those happy little veg with you to
-            your kitchen!
-          </h3>
-          <img src="" alt="" />
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima
-            ipsam, consequatur suscipit, distinctio quidem dignissimos eligendi
-            molestiae dolores rem odio autem commodi ab inventore. Quae ipsam
-            repellendus sint architecto esse.
-          </p>
-        </div>
-        <hr className="divider" />
-        <div className="cook">
-          <div className="cook-content">
-            <h3>
-              Do your part to help the environment by reducing your food waste,
-              all while making some tasty treats
-            </h3>
-            <img src="" alt="" />
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-              dicta quibusdam iusto iure? Laborum neque velit reprehenderit sit
-              tenetur minus sequi, ab hic repudiandae! Possimus voluptatibus
-              culpa ratione consectetur maiores.
-            </p>
+        <div className="landing-img">
+          <img className="circular" src="src/assets/cook.jpeg" alt="#" /> */}
+        {/* </div> */}
+      
+      {/* </div> */}
+
+      {/* <div className="container">
+        <div className="sow-landing">
+          <div className="sow-content">
+            <h3 className="info-header">Garden</h3>
+            <div className="grid-container">
+              <div className="text">
+                <ul>
+                  <li>
+                    Explore the plant database and view planting schedules,
+                    harvesting times and watering frequencies
+                  </li>
+                  <br />
+                  <li>
+                    Plant your seeds and update your virtual garden to reflect
+                    your real one! Your little vegetable friend will alert you
+                    when it’s thirsty and when it’s ready to be harvested
+                  </li>
+                  <br />
+                  <li>
+                    Organise and keep track of all your important gardening
+                    tasks in your to-do list
+                  </li>
+                  <br />
+                  <li>
+                    Is it going to rain today? Use the weather widget to help
+                    manage your upcoming tasks and watering schedule
+                  </li>
+                </ul>
+              </div>
+              <div></div>
+              <div className="image">
+                <img className="circular" src="src/assets/cook.jpeg" alt="#" />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="mascot-container"></div>
-      <footer>
+      </div> */}
+
+
         <img src={grassImage} alt="Grass" className="grass" />
-      </footer>
+
     </>
   );
 };
