@@ -24,33 +24,34 @@ const LandingPage = () => {
             <div className="sowheader">
               <h3 className="sowtitle">Sow</h3>
               <img
-                className="circular"
-                src="src/assets/sprout.jpg"
+                className="sprout-img"
+                src="src/assets/sprout.png"
                 alt="Seed sprouting"
               />
               <p className="sow-about">
-                🌱 Cultivate with Confidence Personalised guidance from seed to
-                sprout, ensuring your garden thrives.
+                🌱 Cultivate with Confidence! 
+                <p>Personalised guidance from seed to sprout, ensuring your garden thrives.</p>
               </p>
             </div>
             <div className="harvestheader">
               <h3 className="harvesttitle">Harvest</h3>
               <img
-                className="circular"
-                src="src/assets/harvest.avif"
+                className="harvest-img"
+                src="src/assets/harvest.png"
                 alt="harvest vegetables"
               />
               <p className="harvest-about">
-                🌱 Maximise Your Bounty Expert tips to make the most of your
-                harvest, ensuring abundant and flavourful produce.
+                🌱 Maximise Your Bounty! 
+                <p>Expert tips to make the most of your harvest, ensuring abundant and flavourful produce.</p>
               </p>
             </div>
             <div className="cookheader">
               <h3 className="cooktitle">Cook</h3>
-              <img className="circular" src="src/assets/cook.jpeg" alt="#" />
+              <img className="cook-img" src="src/assets/cook.png" alt="#" />
               <p className="cook-about">
-                🌱 From Garden to Table Delicious recipes crafted to complement
-                your homegrown bounty, turning every meal into a celebration.
+                🌱 From Garden to Table!
+                <p>Delicious recipes crafted to complement
+                your homegrown bounty, turning every meal into a celebration.</p>
               </p>
             </div>
           </div>

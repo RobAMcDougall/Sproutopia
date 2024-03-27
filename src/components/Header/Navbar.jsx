@@ -2,8 +2,8 @@ import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import "./navbar.css";
-import { SearchBar } from "../Search";
-import { SearchResultsList } from "../SearchResultsList/SearchResultsList";
+// import { SearchBar } from "../Search";
+// import { SearchResultsList } from "../SearchResultsList/SearchResultsList";
 
 function Navbar() {
   const [results, setResults] = useState([]);
@@ -24,14 +24,14 @@ function Navbar() {
           <NavLink className="link" to="/garden">
             Garden
           </NavLink>
-          <NavLink className="link" to="/calendar">
+          {/* <NavLink className="link" to="/calendar">
             Calendar
-          </NavLink>
+          </NavLink> */}
           <NavLink className="link" to="/kitchen">
             Kitchen
           </NavLink>
-          <SearchBar setResults={setResults} />
-          <SearchResultsList results={results} />
+          {/* <SearchBar setResults={setResults} />
+          <SearchResultsList results={results} /> */}
           <NavLink className="link" to="/" onClick={handleLogout}>
             Sign out
           </NavLink>
