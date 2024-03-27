@@ -2,9 +2,10 @@ import { Fragment, useContext, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { RecipeContext } from '../../../context/RecipeContext'
+import { example } from '../../../example'
 
 export default function AddIngredientsModal() {
-   const {open, setOpen, ingredients, setIngredients} = useContext(RecipeContext)
+   const {open, setOpen, ingredients, setIngredients, setAllRecipes, allRecipes} = useContext(RecipeContext)
    const [tags, setTags] = useState(ingredients)
 
     const addTags = (e) => {    
@@ -17,6 +18,7 @@ export default function AddIngredientsModal() {
 
     const addIngredients = () => {
         setIngredients(tags)
+        setAllRecipes(example)
         setOpen(false);
     }
   return (

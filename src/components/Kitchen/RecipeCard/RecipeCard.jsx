@@ -4,41 +4,22 @@ import { example } from "../../../example";
 import { useNavigate } from "react-router-dom";
 const RecipeCard = () => {
   // get recipes from local storage
-  const { ingredients } = useContext(RecipeContext);
-  const [allRecipes, setAllRecipes] = useState(example);
+  const { ingredients, intolerances, allRecipes, setRecipes } = useContext(RecipeContext);
+   
   const [cuisineType, setCuisineType] = useState("");
 
-  // split the ingredients array into a string
-  let allIngredients = ingredients.join(",");
-
-  // const getRecipesByIngredients = async() => {
-
-  //   const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${allIngredients}&number=10&apiKey=1f6c8dec590648dea3f0d2d501385b28`);
-  //   const data = await response.json();
-  //   console.log(data)
-  //   setAllRecipes(data);
-
-  // }
-
-  // get cuisine type
-  const getCuisineType = async (title) => {
-    const response = await fetch(
-      `https://api.spoonacular.com/recipes/cuisine?apiKey=c4ca8f2e6eab44febc452055af5c53a9&title=${title}`
-    );
-    const data = await response.json();
-
-    setCuisineType(data);
-  };
-  // useEffect(() => {
-  //   getRecipesByIngredients();
-  // }, [])
+  
+ 
+  
 
   const navigate = useNavigate();
 
   return (
     <>
-      {allRecipes &&
-        allRecipes.results.map((recipe) => (
+
+     
+      { 
+        allRecipes ? allRecipes.results.map((recipe) => (
           <div
             key={recipe.id}
             className="w-[200px] bg-[#DEF3C3] rounded-md cursor-pointer"
@@ -71,8 +52,10 @@ const RecipeCard = () => {
             <button className='rounded-full bg-green-500 px-2 text-sm' key={ingredient.id}>{ingredient.name}</button>
           ))} */}
           </div>
-        ))}
+        )) : <p>No recipes found. Have you added any ingredients?</p>}
+         
     </>
+    
   );
 };
 

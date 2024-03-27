@@ -1,16 +1,18 @@
 import React, { useContext, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { RecipeContext } from '../../context/RecipeContext'
+import { example2 } from '../../example2'
  
 
 const SideNav = () => {
-  const {ingredients, setOpen, setIntolerances, intolerances} = useContext(RecipeContext)
+  const {ingredients, setOpen, setIntolerances, intolerances, setAllRecipes} = useContext(RecipeContext)
 
   const upperCaseIngredient = ingredient => {
     return ingredient.charAt(0).toUpperCase() + ingredient.slice(1)
   }
 
   const addIngredient = () => {
+
      setOpen(true)
   }
 
@@ -19,6 +21,10 @@ const SideNav = () => {
     if(e.target.checked) {
       setIntolerances([...intolerances, e.target.name])
     }
+  }
+
+  const addDietary = () => {
+    setAllRecipes(example2)
   }
 
    
@@ -30,9 +36,9 @@ const SideNav = () => {
         <h3 className='text-lg font-medium'>Add ingredients</h3>
         <div className='mt-3'>
             <div className='flex flex-wrap gap-3'> 
-            {ingredients.map((ingredient) => (
+            {ingredients.length > 0 ?ingredients.map((ingredient) => (
                 <button key={ingredient} className='bg-white border border-gray-400 rounded-md py-1 px-8 text-sm'>{upperCaseIngredient(ingredient)}</button>
-            ))}
+            )): <p className='text-sm'>No ingredients added.</p>}
        
         </div>
         <button onClick={addIngredient} className='font-medium text-sm mt-4'>+ Add More</button>
@@ -40,15 +46,14 @@ const SideNav = () => {
         <div className='mt-9'>
             <h3 className='font-medium'>Recent harvest from your garden</h3>
             <div className='flex flex-wrap gap-3 mt-3'> 
-        <button className='bg-white border border-gray-400 rounded-md py-1 px-8 text-sm'>Pasta</button>
+        
         <button className='bg-white border border-gray-400 rounded-md py-1 px-8 text-sm'>Tomato</button>
-        <button className='bg-white border border-gray-400 rounded-md py-1 px-8 text-sm'>Cheese</button>
         </div>
         </div>
         <div className='mt-10'>
             <h3 className='font-medium mb-2'>Dietary Requirements</h3>
             <div className='block'> 
-            <input type='checkbox' onChange={addDietaryRequirement} name='gluten' className='ml-2'/>
+            <input type='checkbox' checked={intolerances.includes("gluten")} onChange={addDietaryRequirement} name='gluten' className='ml-2'/>
             <label className='ml-2'>Gluten</label>
             </div>
             <div className='block'> 
@@ -56,7 +61,7 @@ const SideNav = () => {
             <label className='ml-2'>Diary</label>
             </div>
             <div className='block'> 
-            <input type='checkbox' className='ml-2' onChange={addDietaryRequirement} name='egg'/>
+            <input type='checkbox' className='ml-2' onChange={addDietary} name='egg'/>
             <label className='ml-2'>Egg</label>
             </div>
             <div className='block'> 
