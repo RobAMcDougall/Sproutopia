@@ -3,24 +3,66 @@
 } */
 
 .hero {
-    margin-top: 8%;
+  margin-top: 8%;
 }
 
 .hero2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto auto;
-    margin: 0 auto;
-    padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  margin: 0 auto;
+  padding: 20px;
 }
-
 
 .grass {
-    position: fixed
+  position: fixed;
 }
 .sky {
-    position: fixed
+  position: fixed;
+  display: block;
+  margin: 0 auto;
 }
+
+.logo-landing {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.info-header {
+  font-size: 56px;
+}
+
 .circular {
-    border-radius: 50%;
+  border-radius: 50%;
+}
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.text {
+  font-size: 32px;
+}
+
+ul {
+  list-style: none; /* remove default bullet points */
+  padding-left: 1.5em; /* adjust padding to accommodate emoji */
+}
+
+ul li::before {
+  content: ""; /* add empty content */
+  display: inline-block;
+  width: 1em; /* adjust width as needed */
+  height: 1em; /* adjust height as needed */
+  background-image: url("src/assets/veg-icons/carrot.png"); /* specify the emoji image */
+  background-size: contain; /* ensure the image fits within the container */
+  background-repeat: no-repeat; /* prevent the image from repeating */
+  margin-right: 0.5em; /* adjust spacing between emoji and text */
 }
