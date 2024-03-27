@@ -77,26 +77,34 @@ const fetchPlantedVegetables = async () => {
       throw new Error('Failed to fetch planted vegetables');
     }
     const plantedVegetables = await response.json();
-    const plantsData = await Promise.all(
-      plantedVegetables.map(async (plantedVeg) => {
-        const plantResponse = await fetch(`http://localhost:3000/plants/${plantedVeg.plant_id}`);
-        const plantData = await plantResponse.json();
-        const nextWateringDate = calculateNextWateringDate(plantedVeg.date_planted, plantData.watering_freq);
-        const needsWatering = isWateringDue(nextWateringDate);
-        return {
-          ...plantedVeg,
-          ...plantData,
-          nextWateringDate,
-          needsWatering
-        };
-      })
+    
+    const plantIds = plantedVegetables.map(plantedVeg => plantedVeg.plant_id);
+    
+    const plantDataResponses = await Promise.all(
+      plantIds.map(plantId =>
+        fetch(`http://localhost:3000/plants/${plantId}`).then(response => response.json())
+      )
     );
+
+    const plantsData = plantedVegetables.map((plantedVeg, index) => {
+      const plantData = plantDataResponses[index];
+      const nextWateringDate = calculateNextWateringDate(plantedVeg.date_planted, plantData.watering_freq);
+      const needsWatering = isWateringDue(nextWateringDate);
+      return {
+        ...plantedVeg,
+        ...plantData,
+        nextWateringDate,
+        needsWatering
+      };
+    });
+
     setPlants(plantsData);
     setPlantedVeg(plantedVegetables);
   } catch (error) {
     console.error('Error fetching plants:', error);
   }
 };
+
 
   const calculateNextWateringDate = (plantingDate, waterFrequency) => {
     const date = new Date(plantingDate);
