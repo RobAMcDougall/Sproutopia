@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { RecipeContext } from '../../context/RecipeContext'
+ 
 
 const SideNav = () => {
   const {ingredients, setOpen, setIntolerances, intolerances} = useContext(RecipeContext)
@@ -13,6 +14,7 @@ const SideNav = () => {
      setOpen(true)
   }
 
+  
   const addDietaryRequirement = (e) => {
     if(e.target.checked) {
       setIntolerances([...intolerances, e.target.name])
