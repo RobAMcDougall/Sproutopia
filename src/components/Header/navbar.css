@@ -1,9 +1,15 @@
 .navbar {
     display: flex;
+    color: #2D5039;
+    font-weight: 500;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
     padding-top: 20px;
+    z-index: 999;
+    position: relative;
+    background-color: #87d5db;
+    padding: 20px 5px;
 }
 
 .navLink {
@@ -25,8 +31,8 @@
     align-items: center;
     margin-left: 20px;
 }
-.img {
-    width: 1.5rem;
+.logo {
+    width: 70%;
 }
 .link {
     font-size: 20px;

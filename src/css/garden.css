@@ -8,7 +8,7 @@
 
 .plant-pots {
   display: grid;
-  margin-top: 5%;
+  margin-top: 1%;
   grid-template-columns: repeat(4, 1fr);
   row-gap: 100px;
   column-gap: 40px;
@@ -333,12 +333,12 @@
 
 .garden-page-title {
   position: absolute;
-  top: 150px;
+  top: 80px;
   font-size: 20px;
 }
 
 .garden-page-info {
   position: absolute;
-  top: 180px;
+  top: 120px;
   font-size: 14px;
 }
