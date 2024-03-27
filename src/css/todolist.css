@@ -1,8 +1,8 @@
 .todo-list {
     width: 360px;
     max-height: 80%;
-    overflow-y: auto; /* Enable vertical scrolling */
-    margin-top: 10%;
+    overflow-y: auto; 
+    margin-top: 8%;
     margin-right: 2%;
     padding: 20px;
     background-color: #def3c38c;

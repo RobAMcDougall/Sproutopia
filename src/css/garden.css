@@ -194,7 +194,7 @@
   
 .pot-choices {
   position: absolute;
-  transform: translate(-21%, -160%);
+  transform: translate(-25%, -160%);
   z-index: 1;
   display: flex;
   justify-content: space-around; 

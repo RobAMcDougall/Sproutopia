@@ -1,15 +1,17 @@
 .weather-widget {
-    width: 300px; 
-    float: left;
-    margin-right: 20px;
-    margin-top: 70px;
-    margin-left: 30px;
+    width: 350px; 
+    margin-top: 4%;
+    margin-left: 2%;
     padding: 20px;
-    font-size: 15px;
+    font-size: 14px;
+    border-radius: 10px;
+    background-color: #def3c38c;
+
   }
   
   .weather-widget form {
     margin-bottom: 10px;
+    text-align: center;
   }
   
   .weather-widget label {
@@ -21,11 +23,13 @@
     width: calc(100% - 10px);
     padding: 5px;
     border: 1px solid #ccc;
+    background-color: #F8FEE6;
     border-radius: 5px;
     outline: none;
   }
   
   .weather-widget button {
+    margin-top: 5px;
     padding: 5px 15px;
     background-color: #2D5039;
     color: #fff;
@@ -39,17 +43,21 @@
   }
   
   .weather-info {
-    margin-top: 20px;
+    margin-top: 10px;
   }
-  
   .weather-info p {
-    margin-bottom: 10px;
+    padding: 3px;
+  }
+
+  .weather-icon {
+    position: absolute;
+    right: 30px;
+    top: 135px;
   }
   
   .rain-message {
     color: #146e85;
     font-weight: bold;
-    margin-top: 20%;
+    margin-top: 8%;
     width: 300px;
   }
-  
