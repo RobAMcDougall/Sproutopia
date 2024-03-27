@@ -215,7 +215,6 @@ const fetchPlantedVegetables = async () => {
     <div className="garden-page">
       <ToDoList />
       <WeatherWidget />
-      <img src={skyImage} alt="sky" className="sky" />
       <p className='garden-page-title'>Welcome to your virtual garden!</p>
       <p className='garden-page-info'>You will be notified if a plant needs your attention</p>
       <div className="plant-pots">
