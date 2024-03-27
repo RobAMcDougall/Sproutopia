@@ -4,12 +4,12 @@ import "./Landingnav.css";
 function Landingnav() {
   return (
     <>
-      <div className="navbar">
-        <nav className="navLink">
-          <NavLink className="link" to="/register">
+      <div className="landing-navbar">
+        <nav className="landing-navLink">
+          <NavLink className="landing-link" to="/register">
             Register
           </NavLink>
-          <NavLink className="link" to="/login">
+          <NavLink className="landing-link" to="/login">
             Login
           </NavLink>
         </nav>

@@ -27,7 +27,7 @@ const PlantInfoPage = () => {
       <div className="plant-name col-1">{plant.name}</div>
       <div className="latin-name col-1">{plant.latin_name}</div>
       <div className="plant-image col-1">
-        <img src={plant.image_url} alt="{plant.name}" />
+        <img className="plant-image" src={plant.image_url} alt="{plant.name}" />
       </div>
       <div className="description col-2">{plant.description}</div>
       <div className="info-container col-2">

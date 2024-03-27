@@ -28,16 +28,18 @@
 .plant-image {
   grid-column: 1 / 2;
   grid-row: 3 / 4;
+  border-radius: 10px;
+  width: 20em;
 }
 
-.plant-info-img {
+/* .plant-info-img {
   width: 235px;
   height: 320px;
   border-radius: 10px;
-}
+} */
 
 .col-1 {
-  max-width: 250px;
+  max-width: 25em;
 }
 
 .col-2 {
