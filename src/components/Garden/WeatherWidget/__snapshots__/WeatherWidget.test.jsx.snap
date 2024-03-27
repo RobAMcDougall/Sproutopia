@@ -7,7 +7,7 @@ exports[`WeatherWidget > matches snapshot 1`] = `
   >
     <form>
       <label>
-        Enter your postcode:
+        Enter your postcode to get the latest weather information:
         <input
           type="text"
           value=""

@@ -15,7 +15,7 @@ describe('WeatherWidget', () => {
 
   it('updates postcode state when typing in input field', () => {
     render(<WeatherWidget />);
-    const input = screen.getByLabelText('Enter your postcode:');
+    const input = screen.getByLabelText('Enter your postcode to get the latest weather information:');
     fireEvent.change(input, { target: { value: '12345' } });
     expect(input.value).toBe('12345');
   });
