@@ -18,7 +18,7 @@ const LandingPage = () => {
               alt="Sproutapia Title"
               className="logo-landing"
             />
-            <h1 className="herotitle">From Planting to Plating</h1>
+            <h1 className="herotitle">From Plant to Plate</h1>
           </div>
           <div className="hero2">
             <div className="sowheader">

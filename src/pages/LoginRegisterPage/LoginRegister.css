@@ -8,7 +8,7 @@
 .logo-header {
   display: block;
   margin: 0 auto;
-  margin-top: 250px;
+  margin-top: 150px;
   margin-bottom: 100px;
   width: 812px;
   height: 96px;
@@ -100,7 +100,7 @@
 }
 
 .form-label {
-  padding-left: 174px;
+   text-align: center;
   font-weight: bold;
   color: #44526a;
 }
@@ -145,4 +145,16 @@
   text-align: center;
   font-weight: 500;
   color: #2d5039;
+}
+
+.bumblebee1 {
+  position: absolute;
+  top: 50%;
+  left: -20%;
+}
+
+.bumblebee2 {
+  position: absolute;
+  top: 70%;
+  right: 30%;
 }

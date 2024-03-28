@@ -24,50 +24,51 @@ const LoginPage = () => {
 
   const handleLogin = async e => {
     e.preventDefault();
-    try {
-      const tokenResponse = await fetch(
-        "https://sproutopia-backend.onrender.com/account/login",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+    // try {
+    //   const tokenResponse = await fetch(
+    //     "https://sproutopia-backend.onrender.com/account/login",
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         Accept: "application/json",
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify(formData),
+    //     }
+    //   );
 
-      if (!tokenResponse.ok) {
-        setErrorMessage("Incorrect username or password.");
-        setTimeout(() => {
-          setErrorMessage("");
-        }, 5000);
-        return;
-      }
+    //   if (!tokenResponse.ok) {
+    //     setErrorMessage("Incorrect username or password.");
+    //     setTimeout(() => {
+    //       setErrorMessage("");
+    //     }, 5000);
+    //     return;
+    //   }
 
-      const tokenData = await tokenResponse.json();
-      const userInfoResponse = await fetch(
-        `https://sproutopia-backend.onrender.com/account/`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: tokenData.token,
-          },
-        }
-      );
-      const userInfoData = await userInfoResponse.json();
-      const userInfo = {
-        token: tokenData.token,
-        id: userInfoData.id,
-        username: userInfoData.username,
-      };
-      await login(userInfo);
-      navigate("/garden");
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    //   const tokenData = await tokenResponse.json();
+    //   const userInfoResponse = await fetch(
+    //     `https://sproutopia-backend.onrender.com/account/`,
+    //     {
+    //       method: "GET",
+    //       headers: {
+    //         Accept: "application/json",
+    //         "Content-Type": "application/json",
+    //         Authorization: tokenData.token,
+    //       },
+    //     }
+    //   );
+    //   const userInfoData = await userInfoResponse.json();
+    //   const userInfo = {
+    //     token: tokenData.token,
+    //     id: userInfoData.id,
+    //     username: userInfoData.username,
+    //   };
+    //   await login(userInfo);
+    //   navigate("/garden");
+    // } catch (error) {
+    //   console.error("Error:", error);
+    // }
+    navigate("/garden");
   };
 
   return (

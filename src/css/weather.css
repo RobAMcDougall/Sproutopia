@@ -1,63 +1,63 @@
 .weather-widget {
-    width: 320px; 
-    margin-top: -1.5%;
-    margin-left: 2%;
-    padding: 20px;
-    font-size: 14px;
-    border-radius: 10px;
-    background-color: #def3c38c;
+  width: 350px; 
+  margin-top: 3%;
+  margin-left: 2%;
+  padding: 20px;
+  font-size: 14px;
+  border-radius: 10px;
+  background-color: #def3c38c;
 
-  }
-  
-  .weather-widget form {
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  
-  .weather-widget label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .weather-widget input[type="text"] {
-    width: calc(100% - 10px);
-    padding: 5px;
-    border: 1px solid #ccc;
-    background-color: #F8FEE6;
-    border-radius: 5px;
-    outline: none;
-  }
-  
-  .weather-widget button {
-    margin-top: 5px;
-    padding: 5px 15px;
-    background-color: #2D5039;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .weather-widget button:hover {
-    background-color: #347d5b;
-  }
-  
-  .weather-info {
-    margin-top: 10px;
-  }
-  .weather-info p {
-    padding: 3px;
-  }
+}
 
-  .weather-icon {
-    position: absolute;
-    right: 30px;
-    top: 135px;
-  }
-  
-  .rain-message {
-    color: #146e85;
-    font-weight: bold;
-    margin-top: 8%;
-    width: 300px;
-  }
+.weather-widget form {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.weather-widget label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.weather-widget input[type="text"] {
+  width: calc(100% - 10px);
+  padding: 5px;
+  border: 1px solid #ccc;
+  background-color: #F8FEE6;
+  border-radius: 5px;
+  outline: none;
+}
+
+.weather-widget button {
+  margin-top: 5px;
+  padding: 5px 15px;
+  background-color: #2D5039;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.weather-widget button:hover {
+  background-color: #347d5b;
+}
+
+.weather-info {
+  margin-top: 10px;
+}
+.weather-info p {
+  padding: 3px;
+}
+
+.weather-icon {
+  position: absolute;
+  right: 30px;
+  top: 135px;
+}
+
+.rain-message {
+  color: #146e85;
+  font-weight: bold;
+  margin-top: 8%;
+  width: 300px;
+}

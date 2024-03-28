@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Select from "react-select";
 import "./LoginRegister.css";
 
@@ -88,7 +88,7 @@ export default function RegisterPage() {
       <h1>New User?</h1>
       <h2>Sign up for an account below</h2>
       <form className="login-register register" onSubmit={handleRegister}>
-        <p className="form-label">Username</p>
+        <p className="text-center form-label">Username</p>
         <input
           onChange={handleInputChange}
           type="text"
@@ -97,7 +97,7 @@ export default function RegisterPage() {
           placeholder="Enter a username"
           required
         />
-        <p className="form-label">Email address</p>
+        <p className="text-center form-label">Email address</p>
         <input
           onChange={handleInputChange}
           type="text"
@@ -106,7 +106,7 @@ export default function RegisterPage() {
           placeholder="Enter your email address"
           required
         />
-        <p className="form-label">Food preferences</p>
+        <p className="text-center form-label">Allergies</p>
         <Select
           className="food-preference-form"
           name="preference"
@@ -144,7 +144,7 @@ export default function RegisterPage() {
           required
         />
 
-        <div className="button-wrap">
+        <div className="text-center w-[200px] button-wrap">
           <input className="signup-button" type="submit" value="Signup" />
         </div>
       </form>
@@ -154,6 +154,9 @@ export default function RegisterPage() {
         src="src/assets/bumblebee2.png"
         alt="bumblebee"
       />
+       <p className="no-account text-center font-medium text-[#2d5039]">
+          Already have an account? Login <Link to="/login">here</Link>
+        </p>
     </div>
   );
 }

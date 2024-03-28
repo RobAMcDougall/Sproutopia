@@ -3,6 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { RecipeContext } from '../../../context/RecipeContext'
 import { example } from '../../../example'
+import { example2 } from '../../../example2'
 
 export default function AddIngredientsModal() {
    const {open, setOpen, ingredients, setIngredients, setAllRecipes, allRecipes} = useContext(RecipeContext)
@@ -18,7 +19,7 @@ export default function AddIngredientsModal() {
 
     const addIngredients = () => {
         setIngredients(tags)
-        setAllRecipes(example)
+        setAllRecipes(example2)
         setOpen(false);
     }
   return (
@@ -81,7 +82,7 @@ export default function AddIngredientsModal() {
                 <div className="mt-5 sm:flex sm:flex-row-reverse">
                   <button
                     type="button"
-                    className="inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 sm:ml-3 sm:w-auto bg-green-500"
+                    className="inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-800 sm:ml-3 sm:w-auto bg-green-900"
                     onClick={addIngredients}
                   >
                     Add Ingredients

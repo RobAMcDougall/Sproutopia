@@ -8,7 +8,7 @@ export const RecipeProvider = ({ children }) => {
 
     const [allRecipes, setAllRecipes] = useState(null);
     
-   const [intolerances, setIntolerances] = useState(["gluten", "peanut"]);
+   const [intolerances, setIntolerances] = useState([]);
    const [open, setOpen] = useState(false)
    
     return (
